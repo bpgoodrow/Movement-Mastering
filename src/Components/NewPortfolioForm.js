@@ -1,9 +1,28 @@
 import React from "react";
+import PropTypes from "prop-types";
+import ReusableForm from "./ReusableForm";
 
-const NewPortfolioForm = () => {
+const NewPortfolioForm = (props) => {
+  function handleNewPortfolioItemFormSubmission(event) {
+    event.preventDefault();
+    props.onNewPortfolioItemCreation({
+      artistName: event.target.artistName.value,
+      albumName: event.target.albumName.value,
+      songName: event.target.songName.value,
+      description: event.target.description.value
+    })
+  }
   return(
-    <h3>Form</h3>
+    <div>
+      <ReusableForm 
+        formSubmissionHandler={handleNewPortfolioItemFormSubmission}
+      />
+    </div>
   );
 }
+
+NewPortfolioForm.propTypes = {
+  onNewPortfolioItemCreation: PropTypes.func
+};
 
 export default NewPortfolioForm;
