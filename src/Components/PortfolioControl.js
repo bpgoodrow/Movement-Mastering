@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Portfolio from "./Portfolio";
-import PortfolioForm from "./PortfolioForm";
+import { NavLink } from "react-router-dom";
+import PortfolioDisplay from "./PortfolioDisplay";
+import NewPortfolioForm from "./NewPortfolioForm";
 import Login from "./Login";
 
 import { db, auth } from './../firebase';
@@ -36,9 +37,9 @@ const PortfolioControl = () => {
   return(
     <div>
       <h2>PortfolioControl</h2>
-      <Portfolio />
-      <PortfolioForm />
-      <Login />
+      <PortfolioDisplay />
+      <NavLink to="/newportfolioForm">Portfolio Form</NavLink>
+      <NavLink to ="/login">Login</NavLink>
     </div>
   )
 }
