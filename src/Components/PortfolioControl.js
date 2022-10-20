@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
 import PortfolioDisplay from "./PortfolioDisplay";
+import PortfolioDetail from "./PortfolioDetail";
 import NewPortfolioForm from "./NewPortfolioForm";
-import Login from "./Login";
+import EditPortfolioItemForm from "./EditPortfolioItemForm";
 
 import { db, auth } from './../firebase';
-import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, QuerySnapshot } from "firebase/firestore";
-import PortfolioItem from "./PortfolioItem";
+import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 
 const PortfolioControl = () => {
 
+  const [formVisibleOnPage, setFormVisibleOnPage] = useState(false);
   const [portfolioDisplay, setPortfolioDisplay] = useState([]);
   const [selectedPortfolioItem, setSelectedPortfolioItem] = useState(null);
   const [editing, setEditing] = useState(false);
@@ -35,12 +35,22 @@ const PortfolioControl = () => {
       setError(error.message);
     }
     );
-
     return () => unSubscribe();
   }, []);
 
+  const handleClick = () => {
+    if (selectedPortfolioItem != null) {
+      setFormVisibleOnPage(false);
+      setSelectedPortfolioItem(null);
+      setEditing(false);
+    } else {
+      setFormVisibleOnPage(!formVisibleOnPage);
+    }
+  }
+
   const handleAddingNewPortfolioItemToPortfolioDisplay = async (newPortfolioItemData) => {
     await addDoc(collection(db, "mastersPortfolio"), newPortfolioItemData);
+    setFormVisibleOnPage(false);
   }
 
   const handleChangingSelectedPortfolioItem = (id) => {
@@ -48,12 +58,51 @@ const PortfolioControl = () => {
     setSelectedPortfolioItem(selection);
   }
 
+  const handleEditClick = () => {
+    setEditing(true);
+  }
+
+  const handleEditingPortfolioItemInPortfolioDisplay = async (portfolioItemToEdit) => {
+    await updateDoc(doc(db, "mastersPortfolio", portfolioItemToEdit.id), portfolioItemToEdit);
+    setEditing(false);
+    setSelectedPortfolioItem(null);
+  }
+
+  const handleDeletingPortfolioItem = async (id) => {
+    await deleteDoc(doc(db, "mastersPortfolio", id));
+    setSelectedPortfolioItem(null);
+  }
+
+  let currentlyVisibleState = null;
+  let buttonText = null; 
+
+  if (error) {
+    currentlyVisibleState = <p>There was an error: {error}</p>
+  } else if (editing) {
+    currentlyVisibleState = <EditPortfolioItemForm portfolioItem={selectedPortfolioItem}
+    onEditPortfolioItem = {handleEditingPortfolioItemInPortfolioDisplay}
+    />
+    buttonText = "Return to Portfolio Display";
+  } else if (selectedPortfolioItem != null) {
+    currentlyVisibleState = <PortfolioDetail 
+    portfolioItem={selectedPortfolioItem}
+    onClickingEdit= {handleEditClick}
+    onClickingDelete = {handleDeletingPortfolioItem}
+    />
+    buttonText = "Return to Portfolio Display"
+  } else if (formVisibleOnPage) {
+    currentlyVisibleState = <NewPortfolioForm onNewPortfolioItemCreation={handleAddingNewPortfolioItemToPortfolioDisplay}/>;
+    buttonText = "Return to Portfolio Display"
+  } else {
+    currentlyVisibleState = <PortfolioDisplay onPortfolioItemSelection=
+    {handleChangingSelectedPortfolioItem} currentPortfolioDisplay={portfolioDisplay}
+    />;
+    buttonText = "Return to Portfolio Display"
+  }
   return(
     <div>
-      <h2>PortfolioControl</h2>
-      <PortfolioDisplay />
-      <NavLink to="/newportfolioForm">Portfolio Form</NavLink>
-      <NavLink to ="/login">Login</NavLink>
+      {currentlyVisibleState}
+      {error ? null : <button onClick={handleClick}>{buttonText}</button>}
     </div>
   )
 }

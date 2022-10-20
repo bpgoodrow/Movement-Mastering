@@ -5,9 +5,9 @@ import PortfolioItem from "./PortfolioItem";
 const PortfolioDisplay = (props) => {
   return(
     <div>
-      {Object.values(props.PortfolioDisplay).map((portfolioItem) =>
+      {Object.values && (props.portfolioDisplay).map((portfolioItem) =>
       <PortfolioItem
-        whenPortfolioItemClicked = {props.onPortfolioItemSelection }
+        whenPortfolioItemClicked = { props.onPortfolioItemSelection }
         artistName= { portfolioItem.artistName }
         albumName={ portfolioItem.albumName }
         songName={ portfolioItem.songName }
@@ -21,7 +21,7 @@ const PortfolioDisplay = (props) => {
 }
 
 PortfolioDisplay.propTypes = {
-  PortfolioDisplay: PropTypes.array,
+  portfolioDisplay: PropTypes.array,
   onPortfolioItemSelection: PropTypes.func
 }
 

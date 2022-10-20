@@ -20,6 +20,7 @@ PortfolioItem.propsTypes = {
   songName: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   id: PropTypes.string,
+  whenPortfolioItemClicked: PropTypes.func
 }
 
 export default PortfolioItem;
