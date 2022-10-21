@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import ReusableForm from "./ReusableForm";
 
 const NewPortfolioForm = (props) => {
-  function handleNewPortfolioItemFormSubmission(event) {
-    event.preventDefault();
+  function handleNewPortfolioItemFormSubmission(e) {
+    e.preventDefault();
     props.onNewPortfolioItemCreation({
-      artistName: event.target.artistName.value,
-      albumName: event.target.albumName.value,
-      songName: event.target.songName.value,
-      description: event.target.description.value
+      artistName: e.target.artistName.value,
+      albumName: e.target.albumName.value,
+      songName: e.target.songName.value,
+      description: e.target.description.value
     })
   }
   return(

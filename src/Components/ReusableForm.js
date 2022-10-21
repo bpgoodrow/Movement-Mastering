@@ -7,18 +7,18 @@ const ReusableForm = (props) => {
       <form onSubmit={props.formSubmissionHandler}>
         <input
           type="text"
-          name="artist name"
+          name="artistName"
           placeholder="artist name"
           />
         <input
           type="text"
-          name="album name"
+          name="albumName"
           placeholder="album name"
         />
         <input
           type="text"
-          name="song name"
-          placeholder="song name"
+          name="songName"
+          placeholder="songName"
         />
         <input
           type="text"

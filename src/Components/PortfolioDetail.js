@@ -6,10 +6,10 @@ const PortfolioDetail = (props) => {
 
   return (
     <div>
-      <h4>{props.artistName}</h4>
-      <h4>{props.albumName}</h4>
-      <h4>{props.songName}</h4>
-      <h4>{props.description}</h4>
+      <h4>Artist: {portfolioItem.artistName}</h4>
+      <h4>Album: {portfolioItem.albumName}</h4>
+      <h4>Song: {portfolioItem.songName}</h4>
+      <h4>Notes: {portfolioItem.description}</h4>
       <button onClick={ props.onClickingEdit }>Update Item</button>
       <button onClick={()=> onClickingDelete(portfolioItem.id)}>Delete</button>
     </div>
