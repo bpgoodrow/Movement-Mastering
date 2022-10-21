@@ -16,6 +16,7 @@ const NewPortfolioForm = (props) => {
     <div>
       <ReusableForm 
         formSubmissionHandler={handleNewPortfolioItemFormSubmission}
+        buttonText={"Submit"}
       />
     </div>
   );

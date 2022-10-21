@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import About from "./About";
 import PortfolioDisplay from "./PortfolioDisplay";
 import PortfolioDetail from "./PortfolioDetail";
 import NewPortfolioForm from "./NewPortfolioForm";
@@ -73,38 +74,48 @@ const PortfolioControl = () => {
     setSelectedPortfolioItem(null);
   }
 
-  let currentlyVisibleState = null;
-  let buttonText = null; 
+  if (auth.currentUser == null) {
+    return (
+      <div>
+        <h2>Log in to Access</h2>
+      </div>
+    )
+  } else if (auth.currentUser != null) {
 
-  if (error) {
-    currentlyVisibleState = <p>There was an error: {error}</p>
-  } else if (editing) {
-    currentlyVisibleState = <EditPortfolioItemForm portfolioItem={selectedPortfolioItem}
-    onEditPortfolioItem = {handleEditingPortfolioItemInPortfolioDisplay}
-    />
-    buttonText = "Return to Portfolio Display";
-  } else if (selectedPortfolioItem != null) {
-    currentlyVisibleState = <PortfolioDetail 
-    portfolioItem={selectedPortfolioItem}
-    onClickingEdit= {handleEditClick}
-    onClickingDelete = {handleDeletingPortfolioItem}
-    />
-    buttonText = "Return to Portfolio Display"
-  } else if (formVisibleOnPage) {
-    currentlyVisibleState = <NewPortfolioForm onNewPortfolioItemCreation={handleAddingNewPortfolioItemToPortfolioDisplay}/>;
-    buttonText = "Return to Portfolio Display"
-  } else {
-    currentlyVisibleState = <PortfolioDisplay onPortfolioItemSelection=
-    {handleChangingSelectedPortfolioItem} currentPortfolioDisplay={portfolioDisplay}
-    />;
-    buttonText = "Return to Portfolio Display"
+    let currentlyVisibleState = null;
+    let buttonText = null; 
+
+    if (error) {
+      currentlyVisibleState = <p>There was an error: {error}</p>
+    } else if (editing) {
+      currentlyVisibleState = <EditPortfolioItemForm portfolioItem={selectedPortfolioItem}
+      onEditPortfolioItem = {handleEditingPortfolioItemInPortfolioDisplay}
+      />
+      buttonText = "Return to Portfolio Display";
+    } else if (selectedPortfolioItem != null) {
+      currentlyVisibleState = <PortfolioDetail 
+      portfolioItem={selectedPortfolioItem}
+      onClickingEdit= {handleEditClick}
+      onClickingDelete = {handleDeletingPortfolioItem}
+      />
+      buttonText = "Return to Portfolio Display"
+    } else if (formVisibleOnPage) {
+      currentlyVisibleState = <NewPortfolioForm onNewPortfolioItemCreation={handleAddingNewPortfolioItemToPortfolioDisplay}/>;
+      buttonText = "Return to Portfolio Display"
+    } else {
+      currentlyVisibleState = <PortfolioDisplay onPortfolioItemSelection=
+      {handleChangingSelectedPortfolioItem} portfolioDisplay={portfolioDisplay}
+      />;
+      buttonText = "Add Item"
+    }
+    return(
+      <div>
+        <About />
+        {currentlyVisibleState}
+        {error ? null : <button onClick={handleClick}>{buttonText}</button>}
+      </div>
+    )
   }
-  return(
-    <div>
-      {currentlyVisibleState}
-      {error ? null : <button onClick={handleClick}>{buttonText}</button>}
-    </div>
-  )
 }
 
 export default PortfolioControl;

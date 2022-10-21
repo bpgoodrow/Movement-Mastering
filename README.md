@@ -16,4 +16,8 @@
 - 11:00 - 12:00: debugging portfolioDisplay
 
 - 10/20/2022
-- 10:00 - 11: 00: continue portfolio logic
+- 10:00 - 11:00: continue portfolio logic
+- 11:00 - 12:00 debug Uncaught TypeError
+
+-10/21/2022
+- 10:00 - 11:00: set authorization with firebase

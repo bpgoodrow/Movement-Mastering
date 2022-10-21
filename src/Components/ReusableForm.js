@@ -33,6 +33,7 @@ const ReusableForm = (props) => {
 
 ReusableForm.propTypes = {
   formSubmissionHandler: PropTypes.func,
-}
+  buttonText: PropTypes.string
+};
 
 export default ReusableForm;
