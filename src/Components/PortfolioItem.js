@@ -9,6 +9,7 @@ const PortfolioItem = (props) => {
         <h4>Album: {props.albumName}</h4>
         <h4>Song: {props.songName}</h4>
         <h4>Notes: {props.description}</h4>
+        <hr/>
       </div>
     </div>
   )
