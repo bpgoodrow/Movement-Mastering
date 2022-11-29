@@ -27,6 +27,8 @@ const PortfolioControl = () => {
             albumName: doc.data().albumName,
             songName: doc.data().songName,
             description: doc.data().description,
+            spotify: doc.data().spotify,
+            appleMusic: doc.data().appleMusic,
             id: doc.id
           });
         });
@@ -74,16 +76,46 @@ const PortfolioControl = () => {
     setSelectedPortfolioItem(null);
   }
 
+  const handleHomeClick = () => {
+    setSelectedPortfolioItem(null);
+  }
+
   if (auth.currentUser == null) {
+    let currentlyVisibleState = null;
+
+    if (error) {
+      currentlyVisibleState = <p>There was an error: {error}</p>
+    } else if (selectedPortfolioItem != null) {
+      currentlyVisibleState = <PortfolioDetail 
+      portfolioItem={selectedPortfolioItem}
+      />
+      if (error) {
+        currentlyVisibleState = <p>There was an error: {error}</p>
+      } else if (selectedPortfolioItem != null) {
+        currentlyVisibleState = <PortfolioDetail 
+        portfolioItem={selectedPortfolioItem}
+        onClickingHome={handleHomeClick}
+        />
+      } else {
+        currentlyVisibleState = <PortfolioDisplay onPortfolioItemSelection=
+        {handleChangingSelectedPortfolioItem} portfolioDisplay={portfolioDisplay}
+        />;
+      }
+    } else {
+      currentlyVisibleState = <PortfolioDisplay onPortfolioItemSelection=
+      {handleChangingSelectedPortfolioItem} portfolioDisplay={portfolioDisplay}
+      />;
+    }
     return (
       <div>
-        <h2>Log in to Access</h2>
+        <h2>USER</h2>
+        {currentlyVisibleState}
       </div>
     )
   } else if (auth.currentUser != null) {
 
     let currentlyVisibleState = null;
-    let buttonText = null; 
+    let buttonText = null;
 
     if (error) {
       currentlyVisibleState = <p>There was an error: {error}</p>

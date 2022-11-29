@@ -12,6 +12,8 @@ const PortfolioDisplay = (props) => {
         albumName={ portfolioItem.albumName }
         songName={ portfolioItem.songName }
         description= { portfolioItem.description }
+        spotify= { portfolioItem.spotify }
+        appleMusic= { portfolioItem.appleMusic} 
         id= { portfolioItem.id }
         key= { portfolioItem.id }
         />

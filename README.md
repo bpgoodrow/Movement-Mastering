@@ -22,3 +22,12 @@
 - 10/21/2022
 - • 10:00 - 11:00: set authorization with firebase
 - • 11:00 - 12:00: continue debugging
+
+- 11/18/2022
+- • 9:00 - 10:00: create client and label rate components
+
+- 11/19/2022
+- • 8:00 - 9:00:  route client and label components. Plan more auth features
+
+- 11/28/2022
+- • 1:00 - 4:00

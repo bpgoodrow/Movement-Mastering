@@ -9,7 +9,9 @@ const NewPortfolioForm = (props) => {
       artistName: e.target.artistName.value,
       albumName: e.target.albumName.value,
       songName: e.target.songName.value,
-      description: e.target.description.value
+      description: e.target.description.value,
+      spotify: e.target.spotify.value,
+      appleMusic: e.target.appleMusic.value
     })
   }
   return(

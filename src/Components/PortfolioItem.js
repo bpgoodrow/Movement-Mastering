@@ -9,6 +9,8 @@ const PortfolioItem = (props) => {
         <h4>Album: {props.albumName}</h4>
         <h4>Song: {props.songName}</h4>
         <h4>Notes: {props.description}</h4>
+        <h5>Spotify: {props.spotify}</h5>
+        <h5>Apple Music: {props.appleMusic}</h5>
         <hr/>
       </div>
     </div>
@@ -20,6 +22,8 @@ PortfolioItem.propsTypes = {
   albumName: PropTypes.string.isRequired,
   songName: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  spotify: PropTypes.string,
+  appleMusic: PropTypes.string,
   id: PropTypes.string,
   whenPortfolioItemClicked: PropTypes.func
 }

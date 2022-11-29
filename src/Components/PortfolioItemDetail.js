@@ -11,6 +11,8 @@ const PortfolioItemDetail = (props) => {
       <h4>{props.albumName}</h4>
       <h4>{props.songName}</h4>
       <h4>{props.description}</h4>
+      <h5>{props.spotify}</h5>
+      <h5>{props.appleMusic}</h5>
       <button onClick={ props.onClickingEdit }>Update Item</button>
       <button onClick={ props.onClickingDelete }>Delete Item</button>
       <hr/>

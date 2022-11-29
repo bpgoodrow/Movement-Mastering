@@ -25,6 +25,16 @@ const ReusableForm = (props) => {
           name="description"
           placeholder="description"
         />
+        <input
+          type="text"
+          name="spotify"
+          placeholder="spotify"
+        />
+        <input
+          type="text"
+          name="appleMusic"
+          placeholder="appleMusic"
+        />
         <button type="submit">Submit</button>
       </form>
     </div>

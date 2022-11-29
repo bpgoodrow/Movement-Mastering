@@ -4,6 +4,8 @@ import Faq from "./Faq";
 import PortfolioControl from "./PortfolioControl";
 import Login from "./Login";
 import NewPortfolioForm from "./NewPortfolioForm";
+import LabelRate from "./LabelRate";
+import IndieRate from "./IndieRate";
 
 const RoutePath = () => {
   const location = useLocation();
@@ -13,6 +15,8 @@ const RoutePath = () => {
       <Route path="/faq" element={<Faq />} />
       <Route path="/login" element={<Login />} />
       <Route path="/newportfolioform" element={<NewPortfolioForm />} />
+      <Route path="/labelrate" element={<LabelRate />} />
+      <Route path="/indierate" element={<IndieRate />} />
     </Routes>
   );
 }
