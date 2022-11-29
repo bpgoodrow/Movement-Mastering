@@ -30,4 +30,7 @@
 - • 8:00 - 9:00:  route client and label components. Plan more auth features
 
 - 11/28/2022
-- • 1:00 - 4:00
+- • 1:00 - 4:00: wrap correct elements in auth for admin capabilities
+
+- 11/29/2022
+- •1:00 - 3:00: make forms for label rate page

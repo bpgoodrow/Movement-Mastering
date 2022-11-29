@@ -7,20 +7,36 @@ const PortfolioDetail = (props) => {
 
   if (auth.currentUser == null) {
     let visibleButtons = !null;
- 
+    console.log(auth.currentUser, "auth", visibleButtons)
     return (
       <div>
         <h4>Artist: {portfolioItem.artistName}</h4>
         <h4>Album: {portfolioItem.albumName}</h4>
         <h4>Song: {portfolioItem.songName}</h4>
         <h4>Notes: {portfolioItem.description}</h4>
-        {visibleButtons ? null : <><button onClick={props.onClickingEdit }>Update Item</button> <button onClick={()=> onClickingDelete(portfolioItem.id)}>Delete</button> </>}
-        
+        <h4>Spotify: {portfolioItem.spotify}</h4>
+        <h4>Apple Music: {portfolioItem.apple}</h4>
+        {visibleButtons ? null : <button onClick={props.onClickingEdit }>Update Item</button>}
+        {visibleButtons ? null : <button onClick={()=> onClickingDelete(portfolioItem.id)}>Delete</button>}
         
         <button onClick={props.onClickingHome }>Home</button>
         {/* {error ? null : <button onClick={handleClick}>{buttonText}</button>} */}
       </div>
     ); 
+  } else {
+    let visibleButtons = !null;
+    return (
+      <div>
+        <h4>Artist: {portfolioItem.artistName}</h4>
+        <h4>Album: {portfolioItem.albumName}</h4>
+        <h4>Song: {portfolioItem.songName}</h4>
+        <h4>Notes: {portfolioItem.description}</h4>
+        <button onClick={props.onClickingEdit }>Update Item</button>
+        <button onClick={()=> onClickingDelete(portfolioItem.id)}>Delete</button>
+        {visibleButtons ? null : <button onClick={props.onClickingHome }>Home</button>}
+        {/* {error ? null : <button onClick={handleClick}>{buttonText}</button>} */}
+      </div>
+    )
   }
 }
 
