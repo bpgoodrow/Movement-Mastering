@@ -33,4 +33,7 @@
 - • 1:00 - 4:00: wrap correct elements in auth for admin capabilities
 
 - 11/29/2022
-- •1:00 - 3:00: make forms for label rate page
+- • 1:00 - 3:00: make forms for label rate page
+
+- 11/30/2022
+- • 1:00 - 3:00: finish admin forms for LabelRate and IndieRate pages
