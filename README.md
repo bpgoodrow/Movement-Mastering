@@ -37,3 +37,9 @@
 
 - 11/30/2022
 - • 1:00 - 3:00: finish admin forms for LabelRate and IndieRate pages
+
+- 12/1/2022
+- • 1:00 - 2:00: Create forms and firebase tables for FAQ and About sections
+
+- 12/5/2022
+- • 11:00 - 12:00: begin styling header component.

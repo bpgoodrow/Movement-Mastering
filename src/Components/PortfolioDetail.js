@@ -19,7 +19,7 @@ const PortfolioDetail = (props) => {
         {visibleButtons ? null : <button onClick={props.onClickingEdit }>Update Item</button>}
         {visibleButtons ? null : <button onClick={()=> onClickingDelete(portfolioItem.id)}>Delete</button>}
         
-        <button onClick={props.onClickingHome }>Home</button>
+        <button onClick={props.onClickingHome }>Back</button>
         {/* {error ? null : <button onClick={handleClick}>{buttonText}</button>} */}
       </div>
     ); 

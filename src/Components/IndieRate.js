@@ -79,6 +79,7 @@ const IndieRate = () => {
 
   // EDIT FUNCTION
   async function editIndieRate(indieRate) {
+    console.log(editIndieRate, "edit working")
     const updatedindieRate = {
       lastUpdate: serverTimestamp(),
     };
@@ -119,7 +120,7 @@ const IndieRate = () => {
           <p>{indieRate.desc}</p>
           <div>
             <button onClick={() => deleteIndieRate(indieRate)}>X</button>
-            <button onClick={() => editIndieRate(indieRate)}>Edit Score</button>
+            <button onClick={() => editIndieRate(indieRate)}>Edit</button>
           </div>
         </div>
       ))}
