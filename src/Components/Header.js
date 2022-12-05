@@ -1,6 +1,8 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import Burger from "./burger/Burger"
+import Menu from "./menu/Menu";
 
 const Header = () => {
 
@@ -18,13 +20,17 @@ const Header = () => {
     padding: 1em;
   `;
 
-  const HeaderLink = styled(Link)`
+  const HeaderLink = styled(NavLink)`
     border: solid 1px black;
     text-decoration: none;
     margin: 1em;
+    cursor: pointer;
+    &:hover {
+    text-decoration: underline;
+    }
   `;
 
-  const StyledLink = styled(Link)`
+  const StyledLink = styled(NavLink)`
     align-items: center;
     color: black;
     display: flex;
@@ -45,6 +51,8 @@ const Header = () => {
             <HeaderLink>
               <StyledLink to="/faq">FAQ</StyledLink>
             </HeaderLink>
+            <Menu />
+            <Burger />
           </HeaderLinkContainer>
       </Header>
     </div>

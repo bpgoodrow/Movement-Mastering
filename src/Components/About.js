@@ -105,7 +105,8 @@ const About = () => {
       </>
     )
   }
-
+  
+  if (auth.currentUser !== null){
   return(
     <>
       <h1>About</h1>
@@ -128,6 +129,7 @@ const About = () => {
       ))}
     </>
   )
+  }
 }
 
 export default About;
