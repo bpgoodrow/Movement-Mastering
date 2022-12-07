@@ -34,7 +34,6 @@ const About = () => {
     // );
 
     setLoading(true);
-    // const unsub = onSnapshot(q, (querySnapshot) => {
     const unsub = onSnapshot(colletionRef, (querySnapshot) => {
       const items = [];
       querySnapshot.forEach((doc) => {
@@ -47,7 +46,6 @@ const About = () => {
       unsub();
     };
 
-    // eslint-disable-next-line
   }, []);
 
   async function addAbout() {
@@ -91,20 +89,6 @@ const About = () => {
       console.error(error);
     }
   }
-
-  if (auth.currentUser == null) {
-    return (
-      <>
-      <h1>test</h1>
-      {loading ? <h1>Loading...</h1> : null}
-      {about.map((about) => (
-        <div className="about" key={about.id}>
-          <p>{about.desc}</p>
-        </div>
-      ))}
-      </>
-    )
-  }
   
   if (auth.currentUser !== null){
   return(
@@ -129,6 +113,12 @@ const About = () => {
       ))}
     </>
   )
+  } else {
+    return (
+      <>
+        <h7>Test</h7>
+      </>
+    )
   }
 }
 

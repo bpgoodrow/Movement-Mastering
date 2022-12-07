@@ -112,7 +112,7 @@ const PortfolioControl = () => {
         {currentlyVisibleState}
       </div>
     )
-  } else if (auth.currentUser != null) {
+  } else if (auth.currentUser !== null) {
 
     let currentlyVisibleState = null;
     let buttonText = null;

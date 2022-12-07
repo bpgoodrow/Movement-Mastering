@@ -44,3 +44,6 @@
 - 12/5/2022
 - • 11:00 - 12:00: begin styling header component.
 - • 2:30 - 3:30: begin creating hamburger menu for header.
+
+- 12/7/2022
+- • 1:00 - 3:00: fix about not rendering for client
