@@ -43,9 +43,16 @@ const Header = () => {
   `;
 
   const HamburgerToggle = styled.div`
+    background-color: white;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
     @media (min-width: 699px) {
       display: none;
     }
+    position: absolute;
+    right: 0;
+    width: 100%;
   `
 
   return (
@@ -57,19 +64,23 @@ const Header = () => {
               <StyledLink to="/">Home</StyledLink>
             </HeaderLink>
             <HeaderLink>
-            <StyledLink to="/">Home</StyledLink>
+            <StyledLink to="/faq">FAQ</StyledLink>
             </HeaderLink>
           </HeaderLinkContainer>
-          <HamburgerToggle>
+      </Header>
+      <HamburgerToggle>
             <button onClick={() => setToggle(!toggle)}>Open</button>
             {toggle && (
               <>
-                <StyledLink to="/">Home</StyledLink>
-                <StyledLink to="/">Home</StyledLink>
+                <HeaderLink>
+                  <StyledLink to="/faq">FAQ</StyledLink>
+                </HeaderLink>
+                <HeaderLink>
+                  <StyledLink to="/">Home</StyledLink>
+                </HeaderLink>
               </>
             )}
           </HamburgerToggle>
-      </Header>
     </div>
   );
 }

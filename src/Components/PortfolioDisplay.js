@@ -5,7 +5,7 @@ import PortfolioItem from "./PortfolioItem";
 const PortfolioDisplay = (props) => {
   return(
     <React.Fragment>
-      {Object.values(props.portfolioDisplay).map((portfolioItem) =>
+      {[...Object.values(props.portfolioDisplay)].reverse().map((portfolioItem) =>
       <PortfolioItem
         whenPortfolioItemClicked = { props.onPortfolioItemSelection }
         artistName= { portfolioItem.artistName }
@@ -13,7 +13,7 @@ const PortfolioDisplay = (props) => {
         songName={ portfolioItem.songName }
         description= { portfolioItem.description }
         spotify= { portfolioItem.spotify }
-        appleMusic= { portfolioItem.appleMusic} 
+        appleMusic= { portfolioItem.appleMusic}
         id= { portfolioItem.id }
         key= { portfolioItem.id }
         />
