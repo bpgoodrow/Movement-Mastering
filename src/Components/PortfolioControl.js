@@ -108,7 +108,7 @@ const PortfolioControl = () => {
     }
     return (
       <div>
-        <h2>USER</h2>
+        <About />
         {currentlyVisibleState}
       </div>
     )

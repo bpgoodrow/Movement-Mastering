@@ -20,12 +20,12 @@ const About = () => {
 
   const [about, setAbout] = useState([]);
   const [desc, setDesc] = useState('');
-  const colletionRef = collection(db, 'about');
+  const collectionRef = collection(db, 'about');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // const q = query(
-    //   colletionRef,
+      // collectionRef,
       //  where('owner', '==', currentUserId),
       // where('desc', '==', 'about1') // does not need index
       //  where('score', '<=', 100) // needs index  https://firebase.google.com/docs/firestore/query-data/indexing?authuser=1&hl=en
@@ -34,7 +34,7 @@ const About = () => {
     // );
 
     setLoading(true);
-    const unsub = onSnapshot(colletionRef, (querySnapshot) => {
+    const unsub = onSnapshot(collectionRef, (querySnapshot) => {
       const items = [];
       querySnapshot.forEach((doc) => {
         items.push(doc.data());
@@ -45,7 +45,7 @@ const About = () => {
     return () => {
       unsub();
     };
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function addAbout() {
@@ -58,7 +58,7 @@ const About = () => {
     };
 
     try {
-      const aboutRef = doc(colletionRef, newAbout.id);
+      const aboutRef = doc(collectionRef, newAbout.id);
       await setDoc(aboutRef, newAbout);
     } catch (error) {
       console.error(error);
@@ -68,7 +68,7 @@ const About = () => {
    //DELETE FUNCTION
    async function deleteAbout(about) {
     try {
-      const aboutRef = doc(colletionRef, about.id);
+      const aboutRef = doc(collectionRef, about.id);
       await deleteDoc(aboutRef, aboutRef);
     } catch (error) {
       console.error(error);
@@ -83,40 +83,47 @@ const About = () => {
     };
 
     try {
-      const aboutRef = doc(colletionRef, about.id);
+      const aboutRef = doc(collectionRef, about.id);
       updateDoc(aboutRef, updatedAbout);
     } catch (error) {
       console.error(error);
     }
   }
   
-  if (auth.currentUser !== null){
-  return(
-    <>
+  if (auth.currentUser == null) {
+    return (
+      <>
       <h1>About</h1>
-      <div className="inputBox">
-        <h3>Add New</h3>
-        <h6>Description</h6>
-        <textarea value={desc} onChange={(e) => setDesc(e.target.value)} />
-        <button onClick={() => addAbout()}>Submit</button>
-      </div>
       <hr />
       {loading ? <h1>Loading...</h1> : null}
       {about.map((about) => (
-        <div className="about" key={about.id}>
+        <div key={about.id}>
           <p>{about.desc}</p>
-          <div>
-            <button onClick={() => deleteAbout(about)}>Delete</button>
-            <button onClick={() => editAbout(about)}>Edit</button>
-          </div>
         </div>
       ))}
     </>
-  )
+    )
   } else {
-    return (
+    return(
       <>
-        <h7>Test</h7>
+        <h1>About</h1>
+        <div className="inputBox">
+          <h3>Add New</h3>
+          <h6>Description</h6>
+          <textarea value={desc} onChange={(e) => setDesc(e.target.value)} />
+          <button onClick={() => addAbout()}>Submit</button>
+        </div>
+        <hr />
+        {loading ? <h1>Loading...</h1> : null}
+        {about.map((about) => (
+          <div className="about" key={about.id}>
+            <p>{about.desc}</p>
+            <div>
+              <button onClick={() => deleteAbout(about)}>Delete</button>
+              <button onClick={() => editAbout(about)}>Edit</button>
+            </div>
+          </div>
+        ))}
       </>
     )
   }

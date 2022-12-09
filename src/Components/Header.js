@@ -1,8 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const Header = () => {
+
+  const [toggle, setToggle] = useState(false);
 
   const Header = styled.div`
     background-color: #ADD8E6;
@@ -38,8 +40,13 @@ const Header = () => {
     justify-content: center;
     margin: 1rem;
     text-decoration: none;
-    
   `;
+
+  const HamburgerToggle = styled.div`
+    @media (min-width: 699px) {
+      display: none;
+    }
+  `
 
   return (
     <div>
@@ -50,9 +57,18 @@ const Header = () => {
               <StyledLink to="/">Home</StyledLink>
             </HeaderLink>
             <HeaderLink>
-              <StyledLink to="/faq">FAQ</StyledLink>
+            <StyledLink to="/">Home</StyledLink>
             </HeaderLink>
           </HeaderLinkContainer>
+          <HamburgerToggle>
+            <button onClick={() => setToggle(!toggle)}>Open</button>
+            {toggle && (
+              <>
+                <StyledLink to="/">Home</StyledLink>
+                <StyledLink to="/">Home</StyledLink>
+              </>
+            )}
+          </HamburgerToggle>
       </Header>
     </div>
   );
