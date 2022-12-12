@@ -51,3 +51,6 @@
 - 12/9/2022
 - • 11:00 - 12:00: hamburger wip
 - • 1:00 - 2:00: reverse()map and hamburger wip
+
+- 12/12/2022
+- • 1:00 - 3:00: begin uploading and querying img from storage bucket
