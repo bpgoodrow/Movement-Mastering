@@ -7,6 +7,7 @@ const PortfolioItemDetail = (props) => {
   return (
     <div>
       <h1>Details</h1>
+      <h4>{props.albumCover}</h4>
       <h4>{props.artistName}</h4>
       <h4>{props.albumName}</h4>
       <h4>{props.songName}</h4>

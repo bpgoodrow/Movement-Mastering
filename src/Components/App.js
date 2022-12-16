@@ -4,13 +4,13 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./Header";
 import RoutePath from "./RoutePath";
 import Contact from './Contact';
-import Storage from "./Storage";
+import StorageTest from "./StorageTest";
 
 function App() {
   return (
     <Router>
+      <StorageTest />
       <Header />
-      <Storage />
       <RoutePath />
       <Contact />
     </Router>

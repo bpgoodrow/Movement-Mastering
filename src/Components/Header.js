@@ -51,9 +51,12 @@ const Header = () => {
       display: none;
     }
     position: absolute;
+    z-index: 1;
     right: 0;
-    width: 100%;
   `
+
+  const open = <p>Open</p>
+  const close = <p>Close</p>
 
   return (
     <div>
@@ -67,20 +70,21 @@ const Header = () => {
             <StyledLink to="/faq">FAQ</StyledLink>
             </HeaderLink>
           </HeaderLinkContainer>
-      </Header>
-      <HamburgerToggle>
-            <button onClick={() => setToggle(!toggle)}>Open</button>
+      
+          <HamburgerToggle>
+            <button onClick={() => setToggle(!toggle)}>{ toggle ? close : open }</button>
             {toggle && (
               <>
                 <HeaderLink>
-                  <StyledLink to="/faq">FAQ</StyledLink>
+                  <NavLink to="/faq">FAQ</NavLink>
                 </HeaderLink>
                 <HeaderLink>
-                  <StyledLink to="/">Home</StyledLink>
+                  <NavLink to="/">Home</NavLink>
                 </HeaderLink>
               </>
             )}
           </HamburgerToggle>
+      </Header>
     </div>
   );
 }

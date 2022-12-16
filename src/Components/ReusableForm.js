@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 const ReusableForm = (props) => {
+  const [isfile, setFile] = useState(null);
+  const handleImageAsFile = (e) => {
+    setFile(e.target.files[0]);
+  }
+
   return (
     <div>
       <form onSubmit={props.formSubmissionHandler}>
+        <input 
+          type="file"
+          accept=".png, .jpg, .jpeg"
+          name="albumCover"
+          placeholder="album cover"
+          onChange={handleImageAsFile}
+          />
         <input
           type="text"
           name="artistName"

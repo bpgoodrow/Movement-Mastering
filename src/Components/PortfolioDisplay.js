@@ -8,6 +8,7 @@ const PortfolioDisplay = (props) => {
       {[...Object.values(props.portfolioDisplay)].reverse().map((portfolioItem) =>
       <PortfolioItem
         whenPortfolioItemClicked = { props.onPortfolioItemSelection }
+        albumCover= { portfolioItem.albumCover }
         artistName= { portfolioItem.artistName }
         albumName={ portfolioItem.albumName }
         songName={ portfolioItem.songName }

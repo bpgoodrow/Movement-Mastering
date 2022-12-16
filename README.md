@@ -54,3 +54,6 @@
 
 - 12/12/2022
 - • 1:00 - 3:00: begin uploading and querying img from storage bucket
+
+- 12/16/2020
+- • 9:00 - 1:00: continue storage bucket query
