@@ -57,3 +57,6 @@
 
 - 12/16/2020
 - • 9:00 - 1:00: continue storage bucket query
+
+- 12/19/2022
+- • 1:00 - 2:30: Begin styling

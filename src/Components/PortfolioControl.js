@@ -7,9 +7,8 @@ import EditPortfolioItemForm from "./EditPortfolioItemForm";
 
 import { db, auth, storage } from './../firebase';
 import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
-import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from "uuid";
-import { stringLength } from "@firebase/util";
 
 const PortfolioControl = () => {
 
@@ -85,16 +84,6 @@ const PortfolioControl = () => {
 
   const handleAddingNewPortfolioItemToPortfolioDisplay = async (newPortfolioItemData) => {
     await addDoc(collection(db, "mastersPortfolio"), newPortfolioItemData);
-    if (imageUpload == null) return;
-    const imageRef = ref(storage, `album-covers/${imageUpload.name + v4()}`);
-    uploadBytes(imageRef, imageUpload).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((url) => {
-        setImageList((prev) => [...prev, url])
-        addDoc(collection(db, 'mastersPortfolio'), ({
-          albumCover: url
-        }))
-      })
-    })
     setFormVisibleOnPage(false);
   }
 
@@ -194,6 +183,8 @@ const PortfolioControl = () => {
     return(
       <div>
         <About />
+        <input type= "file" onChange={(event) => {setImageUpload(event.target.files[0])}}/>
+        <button onClick={uploadImage}>Upload Image</button>
         {currentlyVisibleState}
         {error ? null : <button onClick={handleClick}>{buttonText}</button>}
       </div>

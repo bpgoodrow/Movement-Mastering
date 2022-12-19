@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { TbMenu, TbX} from "react-icons/tb";
 
-const Header = () => {
-
-  const [toggle, setToggle] = useState(false);
-
-  const Header = styled.div`
-    background-color: #ADD8E6;
+const Header1 = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -43,7 +39,6 @@ const Header = () => {
   `;
 
   const HamburgerToggle = styled.div`
-    background-color: white;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
@@ -55,12 +50,21 @@ const Header = () => {
     right: 0;
   `
 
-  const open = <p>Open</p>
-  const close = <p>Close</p>
+  const MovementMasteringLogo = styled.img`
+    width: 200px;
+  `
+
+const Header = () => {
+
+  const [toggle, setToggle] = useState(false);
+
+  const open = <TbMenu />
+  const close = <TbX />
 
   return (
     <div>
-      <Header>
+      <Header1>
+        <MovementMasteringLogo src="./MovementMastering.png" alt="Movement Mastering Logo" />
         <h1>Movement Mastering</h1>
           <HeaderLinkContainer>
             <HeaderLink>
@@ -72,7 +76,7 @@ const Header = () => {
           </HeaderLinkContainer>
       
           <HamburgerToggle>
-            <button onClick={() => setToggle(!toggle)}>{ toggle ? close : open }</button>
+            <div onClick={() => setToggle(!toggle)}>{ toggle ? close : open }</div>
             {toggle && (
               <>
                 <HeaderLink>
@@ -84,7 +88,7 @@ const Header = () => {
               </>
             )}
           </HamburgerToggle>
-      </Header>
+      </Header1>
     </div>
   );
 }

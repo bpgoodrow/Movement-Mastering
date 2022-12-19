@@ -2,21 +2,10 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 const ReusableForm = (props) => {
-  const [isfile, setFile] = useState(null);
-  const handleImageAsFile = (e) => {
-    setFile(e.target.files[0]);
-  }
 
   return (
     <div>
       <form onSubmit={props.formSubmissionHandler}>
-        <input 
-          type="file"
-          accept=".png, .jpg, .jpeg"
-          name="albumCover"
-          placeholder="album cover"
-          onChange={handleImageAsFile}
-          />
         <input
           type="text"
           name="artistName"
@@ -30,7 +19,7 @@ const ReusableForm = (props) => {
         <input
           type="text"
           name="songName"
-          placeholder="songName"
+          placeholder="song name"
         />
         <input
           type="text"
@@ -45,7 +34,7 @@ const ReusableForm = (props) => {
         <input
           type="text"
           name="appleMusic"
-          placeholder="appleMusic"
+          placeholder="apple music"
         />
         <button type="submit">Submit</button>
       </form>

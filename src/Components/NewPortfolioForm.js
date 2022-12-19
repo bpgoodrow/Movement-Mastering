@@ -12,7 +12,6 @@ const NewPortfolioForm = (props) => {
       description: e.target.description.value,
       spotify: e.target.spotify.value,
       appleMusic: e.target.appleMusic.value,
-      albumCover: e.target.albumCover.value
     })
   }
   return(

@@ -15,7 +15,7 @@ const PortfolioDetail = (props) => {
         <h4>Song: {portfolioItem.songName}</h4>
         <h4>Notes: {portfolioItem.description}</h4>
         <h4>Spotify: {portfolioItem.spotify}</h4>
-        <h4>Apple Music: {portfolioItem.apple}</h4>
+        <h4>Apple Music: {portfolioItem.appleMusic}</h4>
         {visibleButtons ? null : <button onClick={props.onClickingEdit }>Update Item</button>}
         {visibleButtons ? null : <button onClick={()=> onClickingDelete(portfolioItem.id)}>Delete</button>}
         
@@ -31,6 +31,8 @@ const PortfolioDetail = (props) => {
         <h4>Album: {portfolioItem.albumName}</h4>
         <h4>Song: {portfolioItem.songName}</h4>
         <h4>Notes: {portfolioItem.description}</h4>
+        <h4>Spotify: {portfolioItem.spotify}</h4>
+        <h4>Apple Music: {portfolioItem.appleMusic}</h4>
         <button onClick={props.onClickingEdit }>Update Item</button>
         <button onClick={()=> onClickingDelete(portfolioItem.id)}>Delete</button>
         {visibleButtons ? null : <button onClick={props.onClickingHome }>Home</button>}

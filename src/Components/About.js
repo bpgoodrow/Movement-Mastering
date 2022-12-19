@@ -8,11 +8,6 @@ import {
   deleteDoc,
   collection,
   serverTimestamp,
-  getDocs,
-  query,
-  where,
-  orderBy,
-  limit,
 } from 'firebase/firestore';
 import { db, auth } from './../firebase';
 import { v4 as uuidv4 } from 'uuid';

@@ -5,13 +5,15 @@ import PropTypes from "prop-types";
 const EditPortfolioItemForm = (props) => {
   const { portfolioItem } = props;
 
-  function handleEditPortfolioItemFormSubmission(event) {
-    event.preventDefault();
+  function handleEditPortfolioItemFormSubmission(e) {
+    e.preventDefault();
     props.onEditPortfolioItem({
-      artistName: event.target.artistName.value,
-      albumName: event.target.albumName.value,
-      songName: event.target.songName.value,
-      description: event.target.description.value,
+      artistName: e.target.artistName.value,
+      albumName: e.target.albumName.value,
+      songName: e.target.songName.value,
+      description: e.target.description.value,
+      spotify: e.target.spotify.value,
+      appleMusic: e.target.appleMusic.value,
       id: portfolioItem.id,
     });
   }
