@@ -2,12 +2,28 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { TbMenu, TbX} from "react-icons/tb";
+import {CgMenu} from 'react-icons/cg';
+import { CgClose } from 'react-icons/cg';
 
-const Header1 = styled.div`
+  const HeaderContainer = styled.div`
+    display: flex;
+    align-items: center;
+    margin: 5px;
+  `;
+
+  const HeaderTitleAndLinksContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
   `;
+
+  const Title = styled.h1`
+    margin-left: 1em;
+    @media (max-width: 700px) {
+      display: none
+    }
+  `
 
   const HeaderLinkContainer = styled.div`
     display: flex;
@@ -20,13 +36,15 @@ const Header1 = styled.div`
   `;
 
   const HeaderLink = styled(NavLink)`
-    border: solid 1px black;
     text-decoration: none;
     margin: 1em;
     cursor: pointer;
     &:hover {
     text-decoration: underline;
     }
+    overflow: hidden;
+    transition: 1s;
+    left: 0;
   `;
 
   const StyledLink = styled(NavLink)`
@@ -40,6 +58,8 @@ const Header1 = styled.div`
 
   const HamburgerToggle = styled.div`
     display: flex;
+    align-items: center;
+    justify_content: center;
     flex-direction: row-reverse;
     justify-content: space-between;
     @media (min-width: 699px) {
@@ -48,24 +68,50 @@ const Header1 = styled.div`
     position: absolute;
     z-index: 1;
     right: 0;
+    overflow: hidden;
   `
 
   const MovementMasteringLogo = styled.img`
     width: 200px;
+    @media (max-width: 699px) {
+      width: 100px;
+    }
+  `
+  const HamburgerIcons = styled.div`
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  `
+
+  const SlideLink = styled(NavLink)`
+    slide-left {
+      animation: 3s slide-left;
+    }
+    @keyframes slide-left {
+      from {
+        margin-left: 100%;
+      }
+      to {
+        margin-left: 0%;
+      }
+    }
   `
 
 const Header = () => {
 
   const [toggle, setToggle] = useState(false);
 
-  const open = <TbMenu />
-  const close = <TbX />
+  const open = <HamburgerIcons><CgMenu size="40px" color="black" /></HamburgerIcons>
+  const close = <HamburgerIcons><CgClose size="40px" color="black" /></HamburgerIcons>
 
   return (
     <div>
-      <Header1>
+      <HeaderContainer>
         <MovementMasteringLogo src="./MovementMastering.png" alt="Movement Mastering Logo" />
-        <h1>Movement Mastering</h1>
+        <HeaderTitleAndLinksContainer>
+          <Title>Movement Mastering</Title>
           <HeaderLinkContainer>
             <HeaderLink>
               <StyledLink to="/">Home</StyledLink>
@@ -74,21 +120,21 @@ const Header = () => {
             <StyledLink to="/faq">FAQ</StyledLink>
             </HeaderLink>
           </HeaderLinkContainer>
-      
+        </HeaderTitleAndLinksContainer>
           <HamburgerToggle>
             <div onClick={() => setToggle(!toggle)}>{ toggle ? close : open }</div>
             {toggle && (
               <>
                 <HeaderLink>
-                  <NavLink to="/faq">FAQ</NavLink>
+                  <StyledLink to="/faq">FAQ</StyledLink>
                 </HeaderLink>
                 <HeaderLink>
-                  <NavLink to="/">Home</NavLink>
+                  <StyledLink to="/">Home</StyledLink>
                 </HeaderLink>
               </>
             )}
           </HamburgerToggle>
-      </Header1>
+      </HeaderContainer>
     </div>
   );
 }
