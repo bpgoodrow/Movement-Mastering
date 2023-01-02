@@ -8,7 +8,6 @@ import { CgClose } from 'react-icons/cg';
   const HeaderContainer = styled.div`
     display: flex;
     align-items: center;
-    margin: 5px;
   `;
 
   const HeaderTitleAndLinksContainer = styled.div`
@@ -72,7 +71,7 @@ import { CgClose } from 'react-icons/cg';
   `
 
   const MovementMasteringLogo = styled.img`
-    width: 200px;
+    width: 150px;
     @media (max-width: 699px) {
       width: 100px;
     }
@@ -109,7 +108,9 @@ const Header = () => {
   return (
     <div>
       <HeaderContainer>
-        <MovementMasteringLogo src="./MovementMastering.png" alt="Movement Mastering Logo" />
+        <NavLink to="/">
+          <MovementMasteringLogo src="./MovementMastering.png" alt="Movement Mastering Logo" />
+        </NavLink>
         <HeaderTitleAndLinksContainer>
           <Title>Movement Mastering</Title>
           <HeaderLinkContainer>

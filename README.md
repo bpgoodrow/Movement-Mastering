@@ -62,4 +62,10 @@
 - • 1:00 - 2:00: Begin styling
 
 - 12/20/2022
-- • 11:00 - 12:00 Style Header
+- • 11:00 - 12:00: Style Header
+
+- 12/21/2022
+- • 8:00 - 9:00: Style contact
+
+- 1/2/2023
+- • 7:30 - 9:30: Style components

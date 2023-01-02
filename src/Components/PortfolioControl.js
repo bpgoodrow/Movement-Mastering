@@ -133,13 +133,16 @@ const PortfolioControl = () => {
         />;
       }
     } else {
-      currentlyVisibleState = <PortfolioDisplay onPortfolioItemSelection=
-      {handleChangingSelectedPortfolioItem} portfolioDisplay={portfolioDisplay}
-      />;
+      currentlyVisibleState =
+      <>
+        <About />
+        <PortfolioDisplay onPortfolioItemSelection=
+        {handleChangingSelectedPortfolioItem} portfolioDisplay={portfolioDisplay}
+        />
+      </>
     }
     return (
       <div>
-        <About />
         <>
     </>
         {currentlyVisibleState}
@@ -175,7 +178,6 @@ const PortfolioControl = () => {
     }
     return(
       <div>
-        <About />
         <input type= "file" onChange={(event) => {setImageUpload(event.target.files[0])}}/>
         <button onClick={uploadImage}>Upload Image</button>
         {currentlyVisibleState}

@@ -88,8 +88,7 @@ const About = () => {
   if (auth.currentUser == null) {
     return (
       <>
-      <h1>About</h1>
-      <hr />
+      <h1>About Movement Mastering</h1>
       {loading ? <h1>Loading...</h1> : null}
       {about.map((about) => (
         <div key={about.id}>
@@ -101,14 +100,11 @@ const About = () => {
   } else {
     return(
       <>
-        <h1>About</h1>
         <div className="inputBox">
-          <h3>Add New</h3>
-          <h6>Description</h6>
+          <h3>Update About</h3>
           <textarea value={desc} onChange={(e) => setDesc(e.target.value)} />
           <button onClick={() => addAbout()}>Submit</button>
         </div>
-        <hr />
         {loading ? <h1>Loading...</h1> : null}
         {about.map((about) => (
           <div className="about" key={about.id}>
