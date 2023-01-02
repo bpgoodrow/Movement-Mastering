@@ -4,7 +4,7 @@ import PortfolioItem from "./PortfolioItem";
 
 const PortfolioDisplay = (props) => {
   return(
-    <React.Fragment>
+    <>
       {[...Object.values(props.portfolioDisplay)].reverse().map((portfolioItem) =>
       <PortfolioItem
         whenPortfolioItemClicked = { props.onPortfolioItemSelection }
@@ -19,7 +19,7 @@ const PortfolioDisplay = (props) => {
         key= { portfolioItem.id }
         />
       )}
-    </React.Fragment>
+    </>
   );
 }
 

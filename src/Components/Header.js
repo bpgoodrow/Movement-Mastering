@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { TbMenu, TbX} from "react-icons/tb";
-import {CgMenu} from 'react-icons/cg';
-import { CgClose } from 'react-icons/cg';
+import { CgMenu, CgClose } from 'react-icons/cg';
 
   const HeaderContainer = styled.div`
     display: flex;

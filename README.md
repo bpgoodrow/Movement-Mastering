@@ -69,3 +69,4 @@
 
 - 1/2/2023
 - • 7:30 - 9:30: Style components
+- • 10:00 - 12:00: work on FAQ

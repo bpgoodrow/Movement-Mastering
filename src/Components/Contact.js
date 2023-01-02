@@ -7,6 +7,7 @@ const ContactForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: end;
+  margin: 1em;
 `
 
 const StyledInput = styled.input`
@@ -59,7 +60,7 @@ const StyledButton = styled.button`
 const ContactInfo = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1em;
+  margin: 1em;
 `
 
 const ContactRight = styled.div`

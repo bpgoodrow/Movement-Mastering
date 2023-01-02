@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-
 import {
   doc,
   onSnapshot,
@@ -19,9 +18,11 @@ import { v4 as uuidv4 } from 'uuid';
 const Faqs = () => {
 
   const [faqs, setFaqs] = useState([]);
-  const [desc, setDesc] = useState('');
+  const [desc, setDesc] = useState();
+  const [toggle, setToggle] = useState(false);
+  const [header, setHeader] = useState();
   const colletionRef = collection(db, 'faqs');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState();
 
   useEffect(() => {
     // const q = query(
@@ -53,6 +54,7 @@ const Faqs = () => {
   async function addFaqs() {
 
     const newFaqs = {
+      header,
       desc,
       id: uuidv4(),
       createdAt: serverTimestamp(),
@@ -92,11 +94,16 @@ const Faqs = () => {
     }
   }
 
+  function handleToggle() {
+    setToggle(!toggle)
+  }
+
   if (auth.currentUser == null) {
     return (
       <>
-      {faqs.map((faqs) => (
+      {faqs.reverse().map((faqs) => (
         <div className="faqs" key={faqs.id}>
+          <p>{faqs.header}</p>
           <p>{faqs.desc}</p>
         </div>
       ))}
@@ -108,19 +115,25 @@ const Faqs = () => {
     <>
       <h1>Faq</h1>
       <div className="inputBox">
-        <h3>Add New</h3>
+        <h3>Add New FAQ</h3>
+        <h6>Header</h6>
+        <textarea value={header} onChange={(e) => setHeader(e.target.value)} />
         <h6>Description</h6>
         <textarea value={desc} onChange={(e) => setDesc(e.target.value)} />
         <button onClick={() => addFaqs()}>Submit</button>
       </div>
       <hr />
       {loading ? <h1>Loading...</h1> : null}
-      {faqs.map((faqs) => (
+      {faqs.reverse().map((faqs) => (
         <div className="faqs" key={faqs.id}>
-          <p>{faqs.desc}</p>
+          {console.log(faqs.id)}
+          <div onClick={() => handleToggle(faqs.id)}><h3>{faqs.header}</h3></div>
+          {toggle && (
+            <p>{faqs.desc}</p>
+          )}
+          
           <div>
             <button onClick={() => deleteFaqs(faqs)}>Delete</button>
-            <button onClick={() => editFaqs(faqs)}>Edit</button>
           </div>
         </div>
       ))}
