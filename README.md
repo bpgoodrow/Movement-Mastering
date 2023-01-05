@@ -70,3 +70,9 @@
 - 1/2/2023
 - • 7:30 - 9:30: Style components
 - • 10:00 - 12:00: work on FAQ
+
+- 1/3/2022
+- • 8:00 - 12:00: style front page
+
+- 1/5/2022
+- • 9:00 - 12:00: style header and detail page

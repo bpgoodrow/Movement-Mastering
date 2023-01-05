@@ -130,7 +130,7 @@ const PortfolioControl = () => {
       } else {
         currentlyVisibleState = <PortfolioDisplay onPortfolioItemSelection=
         {handleChangingSelectedPortfolioItem} portfolioDisplay={portfolioDisplay}
-        />;
+        />
       }
     } else {
       currentlyVisibleState =
@@ -171,17 +171,21 @@ const PortfolioControl = () => {
       currentlyVisibleState = <NewPortfolioForm onNewPortfolioItemCreation={handleAddingNewPortfolioItemToPortfolioDisplay}/>;
       buttonText = "Return to Portfolio Display"
     } else {
-      currentlyVisibleState = <PortfolioDisplay onPortfolioItemSelection=
-      {handleChangingSelectedPortfolioItem} portfolioDisplay={portfolioDisplay}
-      />;
-      buttonText = "Add Item"
+      currentlyVisibleState = 
+      <>
+        <About />
+        <PortfolioDisplay onPortfolioItemSelection=
+        {handleChangingSelectedPortfolioItem} portfolioDisplay={portfolioDisplay}
+        />
+        buttonText = "Add Item"
+      </>
     }
     return(
       <div>
         <input type= "file" onChange={(event) => {setImageUpload(event.target.files[0])}}/>
-        <button onClick={uploadImage}>Upload Image</button>
         {currentlyVisibleState}
         {error ? null : <button onClick={handleClick}>{buttonText}</button>}
+        <button onClick={uploadImage}>Upload Image</button>
       </div>
     )
   }

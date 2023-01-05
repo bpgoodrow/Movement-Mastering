@@ -4,15 +4,18 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import styled from "styled-components";
 
 const ContactForm = styled.form`
+  margin-left: 10px;
+  margin-right: 10px;
   display: flex;
   flex-direction: column;
   align-items: end;
-  margin: 1em;
+
 `
 
 const StyledInput = styled.input`
-  border: solid grey 2px;
+  border: solid light-gray 2px;
   height: 1.5rem;
+  padding: .5rem;
   width: 40vw;
   margin-bottom: 1em;
   
@@ -26,12 +29,13 @@ const StyledInput = styled.input`
 `
 
 const StyledTextArea = styled.textarea`
-  border: solid grey 2px;
+  border: solid light-gray 2px;
   &:focus {
     outline: none;
     border: 2px solid black;
   }
   height: 2.5rem;
+  padding: .5rem;
   outline: none;
   width: 40vw;
   @media (max-width: 700px) {
@@ -58,9 +62,14 @@ const StyledButton = styled.button`
 `
 
 const ContactInfo = styled.div`
+  margin-left: 10px;
+  margin-right: 10px;
   display: flex;
+  font-size: 1.5rem;
   justify-content: space-between;
-  margin: 1em;
+  @media (max-width: 699px) {
+    flex-direction: column;
+  }
 `
 
 const ContactRight = styled.div`

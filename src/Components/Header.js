@@ -6,6 +6,9 @@ import { CgMenu, CgClose } from 'react-icons/cg';
   const HeaderContainer = styled.div`
     display: flex;
     align-items: center;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
   `;
 
   const HeaderTitleAndLinksContainer = styled.div`
@@ -34,22 +37,20 @@ import { CgMenu, CgClose } from 'react-icons/cg';
 
   const HeaderLink = styled(NavLink)`
     text-decoration: none;
-    margin: 1em;
+    margin: 1rem;
     cursor: pointer;
     &:hover {
-    text-decoration: underline;
+      border-bottom: solid black .5px;
     }
-    overflow: hidden;
-    transition: 1s;
-    left: 0;
   `;
 
   const StyledLink = styled(NavLink)`
     align-items: center;
+    font-size: 1.2rem;
     color: black;
     display: flex;
     justify-content: center;
-    margin: 1rem;
+
     text-decoration: none;
   `;
 
@@ -69,6 +70,7 @@ import { CgMenu, CgClose } from 'react-icons/cg';
   `
 
   const MovementMasteringLogo = styled.img`
+  cursor: pointer;
     width: 150px;
     @media (max-width: 699px) {
       width: 100px;
@@ -96,27 +98,34 @@ import { CgMenu, CgClose } from 'react-icons/cg';
     }
   `
 
-const Header = () => {
+const Header = ({ handleScroll }) => {
 
   const [toggle, setToggle] = useState(false);
 
   const open = <HamburgerIcons><CgMenu size="40px" color="black" /></HamburgerIcons>
   const close = <HamburgerIcons><CgClose size="40px" color="black" /></HamburgerIcons>
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   return (
     <div>
       <HeaderContainer>
-        <NavLink to="/">
+        <div onClick={refreshPage}>
           <MovementMasteringLogo src="./MovementMastering.png" alt="Movement Mastering Logo" />
-        </NavLink>
+        </div>
         <HeaderTitleAndLinksContainer>
-          <Title>Movement Mastering</Title>
+          <Title></Title>
           <HeaderLinkContainer>
-            <HeaderLink>
+            <HeaderLink to="/">
               <StyledLink to="/">Home</StyledLink>
             </HeaderLink>
+            <HeaderLink to="/faq">
+              <StyledLink to="/faq">FAQ</StyledLink>
+            </HeaderLink>
             <HeaderLink>
-            <StyledLink to="/faq">FAQ</StyledLink>
+              <StyledLink onClick={handleScroll}>Contact</StyledLink>
             </HeaderLink>
           </HeaderLinkContainer>
         </HeaderTitleAndLinksContainer>
@@ -126,6 +135,10 @@ const Header = () => {
               <>
                 <HeaderLink>
                   <StyledLink to="/faq">FAQ</StyledLink>
+                </HeaderLink>
+                
+                <HeaderLink>
+                  <StyledLink onClick={handleScroll}>Contact</StyledLink>
                 </HeaderLink>
                 <HeaderLink>
                   <StyledLink to="/">Home</StyledLink>

@@ -11,6 +11,18 @@ import {
 } from 'firebase/firestore';
 import { db, auth } from './../firebase';
 import { v4 as uuidv4 } from 'uuid';
+import styled from "styled-components";
+
+const AboutWrapper = styled.div`
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 50%;
+  font-size: 1.5rem;
+  @media (max-width: 699px) {
+    width: 98%;
+  }
+`
+
 const About = () => {
 
   const [about, setAbout] = useState([]);
@@ -87,7 +99,7 @@ const About = () => {
   
   if (auth.currentUser == null) {
     return (
-      <>
+      <AboutWrapper>
       <h1>About Movement Mastering</h1>
       {loading ? <h1>Loading...</h1> : null}
       {about.map((about) => (
@@ -95,12 +107,12 @@ const About = () => {
           <p>{about.desc}</p>
         </div>
       ))}
-    </>
+    </AboutWrapper>
     )
   } else {
     return(
-      <>
-        <div className="inputBox">
+      <AboutWrapper>
+        <div>
           <h3>Update About</h3>
           <textarea value={desc} onChange={(e) => setDesc(e.target.value)} />
           <button onClick={() => addAbout()}>Submit</button>
@@ -115,7 +127,7 @@ const About = () => {
             </div>
           </div>
         ))}
-      </>
+      </AboutWrapper>
     )
   }
 }

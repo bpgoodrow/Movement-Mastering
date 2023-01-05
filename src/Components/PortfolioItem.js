@@ -3,23 +3,25 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const AlbumImage = styled.img`
-  width: 30%;
   cursor: pointer;
+  vertical-align: middle;
+  width: 30%;
+  margin: 10px;
+  @media (max-width: 899px){
+    width 45%;
+  }
+  @media (max-width: 699px) {
+    display: flex;
+    width: 100%;
+    margin-bottom: -10px;
+  }
 `
 
 const PortfolioItem = (props) => {
   return (
-    <div>
-      <div onClick = {() => props.whenPortfolioItemClicked(props.id)}>
-        <AlbumImage src={props.albumCover} />
-        {/* <h4>Artist: {props.artistName}</h4>
-        <h4>Album: {props.albumName}</h4>
-        <h4>Song: {props.songName}</h4>
-        <h4>Notes: {props.description}</h4>
-        <h5>Spotify: {props.spotify}</h5>
-        <h5>Apple Music: {props.appleMusic}</h5> */}
-      </div>
-    </div>
+    <>
+      <AlbumImage onClick = {() => props.whenPortfolioItemClicked(props.id)} src={props.albumCover} />
+    </>
   )
 }
 
