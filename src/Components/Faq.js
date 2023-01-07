@@ -15,7 +15,44 @@ import {
 } from 'firebase/firestore';
 import { db, auth } from './../firebase';
 import { v4 as uuidv4 } from 'uuid';
-const Faqs = () => {
+import FaqQuestions from "./FaqQuestions";
+import styled from "styled-components";
+import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
+
+const StyledTextArea = styled.textarea`
+  border: solid light-gray 2px;
+  &:focus {
+    outline: none;
+    border: 2px solid black;
+  }
+  height: 2.5rem;
+  padding: .5rem;
+  outline: none;
+  width: 50vw;
+  @media (max-width: 700px) {
+    width: 80vw;
+  }
+`
+
+const StyledButton = styled.button`
+  border: solid black 1px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  height: 2rem;
+    &:hover {
+      background-color: #282828;
+      border: 3px solid #282828;
+    }
+    &:active {
+      background-color: #484848;
+      border: 3px solid #484848;
+    }
+  margin-top: 1em;
+  width: 6rem;
+`
+
+const Faqs = ({question = "", answer = ""}) => {
 
   const [faqs, setFaqs] = useState([]);
   const [desc, setDesc] = useState();
@@ -94,47 +131,63 @@ const Faqs = () => {
     }
   }
 
-  function handleToggle() {
-    setToggle(!toggle)
+  // function handleToggle() {
+  //   setToggle(!toggle)
+  // }
+  
+  const onToggle = () => {
+    toggle ? setToggle(false) : setToggle(true);
   }
+
+  const open = <IoIosArrowForward size="30px" color="black" />
+  const close = <IoIosArrowDown size="30px" color="black" />
 
   if (auth.currentUser == null) {
     return (
       <>
+      {loading ? <h1>Loading...</h1> : null}
       {faqs.reverse().map((faqs) => (
+        <>
         <div className="faqs" key={faqs.id}>
-          <p>{faqs.header}</p>
-          <p>{faqs.desc}</p>
-        </div>
+          {console.log(faqs.id)}
+          <div onClick={() => onToggle(!toggle)}>{ toggle ? close : open }<h3>{faqs.header}</h3></div>
+          {toggle && (
+            <p>{faqs.desc}</p>
+          )}
+          <hr/>
+          </div>
+        </>
       ))}
       </>
     )
   }
+
+  
 
   return(
     <>
       <h1>Faq</h1>
       <div className="inputBox">
         <h3>Add New FAQ</h3>
-        <h6>Header</h6>
-        <textarea value={header} onChange={(e) => setHeader(e.target.value)} />
-        <h6>Description</h6>
-        <textarea value={desc} onChange={(e) => setDesc(e.target.value)} />
-        <button onClick={() => addFaqs()}>Submit</button>
+        <h6>FAQ</h6>
+        <StyledTextArea value={header} onChange={(e) => setHeader(e.target.value)} />
+        <h6>Answer</h6>
+        <StyledTextArea value={desc} onChange={(e) => setDesc(e.target.value)} />
+        <StyledButton onClick={() => addFaqs()}>Submit</StyledButton>
       </div>
-      <hr />
       {loading ? <h1>Loading...</h1> : null}
       {faqs.reverse().map((faqs) => (
         <div className="faqs" key={faqs.id}>
           {console.log(faqs.id)}
-          <div onClick={() => handleToggle(faqs.id)}><h3>{faqs.header}</h3></div>
+          <div onClick={onToggle}><h3>{faqs.header}</h3></div>
           {toggle && (
             <p>{faqs.desc}</p>
           )}
           
           <div>
-            <button onClick={() => deleteFaqs(faqs)}>Delete</button>
+            <StyledButton onClick={() => deleteFaqs(faqs)}>Delete</StyledButton>
           </div>
+        <hr/>
         </div>
       ))}
     </>

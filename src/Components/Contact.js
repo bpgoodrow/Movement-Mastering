@@ -16,7 +16,7 @@ const StyledInput = styled.input`
   border: solid light-gray 2px;
   height: 1.5rem;
   padding: .5rem;
-  width: 40vw;
+  width: 50vw;
   margin-bottom: 1em;
   
   &:focus {
@@ -24,7 +24,7 @@ const StyledInput = styled.input`
     border: 2px solid black;
   }
   @media (max-width: 700px) {
-    width: 50vw;
+    width: 80vw;
   }
 `
 
@@ -37,9 +37,9 @@ const StyledTextArea = styled.textarea`
   height: 2.5rem;
   padding: .5rem;
   outline: none;
-  width: 40vw;
+  width: 50vw;
   @media (max-width: 700px) {
-    width: 50vw;
+    width: 80vw;
   }
 `
 
