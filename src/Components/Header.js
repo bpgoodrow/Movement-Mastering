@@ -9,21 +9,56 @@ import { CgMenu, CgClose } from 'react-icons/cg';
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 50px;
+  `;
+
+  const HomeLink = styled(NavLink)`
+    text-decoration: none;
+    margin: 1rem;
+    cursor: pointer;
+    border-bottom: ${(props) => (props.homeActive ? 'solid black .5px' : 'none')};
+    &:hover {
+      border-bottom: solid black .5px;
+    }
+    @media (max-width: 405px) {
+      margin: .55rem;
+    }
+  `;
+
+  const FaqLink = styled(NavLink)`
+    text-decoration: none;
+    margin: 1rem;
+    cursor: pointer;
+    border-bottom: 
+      ${(props) => (props.faqActive ? 'solid black .5px' : 'none')};
+    &:hover {
+      border-bottom: solid black .5px;
+    }
+    @media (max-width: 405px) {
+      margin: .55rem;
+    }
+  `;
+
+  const ContactLink = styled(NavLink)`
+    text-decoration: none;
+    margin: 1rem;
+    cursor: pointer;
+    border-bottom: 
+      ${(props) => (props.contactActive ? 'solid black .5px' : 'none')};
+    &:hover {
+      border-bottom: solid black .5px;
+    }
+    @media (max-width: 405px) {
+      margin: .55rem;
+    }
   `;
 
   const HeaderTitleAndLinksContainer = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
     width: 100%;
   `;
-
-  const Title = styled.h1`
-    margin-left: 1em;
-    @media (max-width: 700px) {
-      display: none
-    }
-  `
 
   const HeaderLinkContainer = styled.div`
     display: flex;
@@ -35,14 +70,15 @@ import { CgMenu, CgClose } from 'react-icons/cg';
     }
   `;
 
-  const HeaderLink = styled(NavLink)`
-    text-decoration: none;
-    margin: 1rem;
-    cursor: pointer;
-    &:hover {
-      border-bottom: solid black .5px;
-    }
-  `;
+  const HeaderLinkSelected = styled(NavLink)`
+    border-bottom: solid black .5px
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    @media (max-width: 700px) {
+      display: none
+  `
 
   const StyledLink = styled(NavLink)`
     align-items: center;
@@ -50,23 +86,24 @@ import { CgMenu, CgClose } from 'react-icons/cg';
     color: black;
     display: flex;
     justify-content: center;
-
     text-decoration: none;
   `;
 
   const HamburgerToggle = styled.div`
+    
+    width: 100%;
     display: flex;
     align-items: center;
     justify_content: center;
     flex-direction: row-reverse;
-    justify-content: space-between;
+    justify-content: end;
+    position: absolute;
+    z-index: 0;
+    right: 0;
+    overflow: hidden;
     @media (min-width: 699px) {
       display: none;
     }
-    position: absolute;
-    z-index: 1;
-    right: 0;
-    overflow: hidden;
   `
 
   const MovementMasteringLogo = styled.img`
@@ -101,53 +138,56 @@ import { CgMenu, CgClose } from 'react-icons/cg';
 const Header = ({ handleScroll }) => {
 
   const [toggle, setToggle] = useState(false);
+  const [homeActive, setHomeActive] = useState(true);
+  const [faqActive, setFaqActive] = useState(false);
+  const [contactActive, setContactActive] = useState(false);
 
   const open = <HamburgerIcons><CgMenu size="40px" color="black" /></HamburgerIcons>
   const close = <HamburgerIcons><CgClose size="40px" color="black" /></HamburgerIcons>
 
-  function refreshPage() {
+  const refreshPage = () => {
     window.location.reload(false);
   }
 
+  if (homeActive == true) {
+    
+  }
+
   return (
-    <div>
       <HeaderContainer>
         <div onClick={refreshPage}>
           <MovementMasteringLogo src="./MovementMastering.png" alt="Movement Mastering Logo" />
         </div>
         <HeaderTitleAndLinksContainer>
-          <Title></Title>
           <HeaderLinkContainer>
-            <HeaderLink to="/">
+            <HomeLink to="/" onClick={() => setHomeActive(!homeActive)} homeActive={homeActive}>
               <StyledLink to="/">Home</StyledLink>
-            </HeaderLink>
-            <HeaderLink to="/faq">
+            </HomeLink>
+            <FaqLink to="/faq" onClick={() => setFaqActive(!faqActive)} faqActive={faqActive}>
               <StyledLink to="/faq">FAQ</StyledLink>
-            </HeaderLink>
-            <HeaderLink>
+            </FaqLink>
+            <ContactLink onClick={() => setContactActive(!contactActive)} contactActive={contactActive}>
               <StyledLink onClick={handleScroll}>Contact</StyledLink>
-            </HeaderLink>
+            </ContactLink>
           </HeaderLinkContainer>
         </HeaderTitleAndLinksContainer>
-          <HamburgerToggle>
-            <div onClick={() => setToggle(!toggle)}>{ toggle ? close : open }</div>
-            {toggle && (
-              <>
-                <HeaderLink>
-                  <StyledLink to="/faq">FAQ</StyledLink>
-                </HeaderLink>
-                
-                <HeaderLink>
-                  <StyledLink onClick={handleScroll}>Contact</StyledLink>
-                </HeaderLink>
-                <HeaderLink>
-                  <StyledLink to="/">Home</StyledLink>
-                </HeaderLink>
-              </>
-            )}
-          </HamburgerToggle>
+        <HamburgerToggle>
+          <div onClick={() => setToggle(!toggle)}>{ toggle ? close : open }</div>
+          {toggle && (
+            <>
+              <HomeLink onClick={() => setHomeActive(!homeActive)} homeActive={homeActive}>
+                <StyledLink to="/faq">FAQ</StyledLink>
+              </HomeLink>
+              <FaqLink onClick={() => setFaqActive(!faqActive)} faqActive={faqActive}>
+                <StyledLink onClick={handleScroll}>Contact</StyledLink>
+              </FaqLink>
+              <ContactLink onClick={() => setContactActive(!contactActive)} contactActive={contactActive}>
+                <StyledLink to="/">Home</StyledLink>
+              </ContactLink>
+            </>
+          )}
+        </HamburgerToggle>
       </HeaderContainer>
-    </div>
   );
 }
 

@@ -23,13 +23,13 @@ const InfoContainer = styled.div`
   display: flex;
   margin-left: 50px;
   flex-direction: column;
-  justify-content: space-around;
+  @media (max-width: 799px) {
+    margin-left: 0px;
+  }
 `
 
 const LinkIcon = styled.a`
   cursor: pointer;
-  text-decoration: none;
-  color: black;
 `
 
 const StyledButton = styled.button`
@@ -65,7 +65,10 @@ const PortfolioDetail = (props) => {
             <h4>Song {portfolioItem.songName}</h4>
             <h4>Notes {portfolioItem.description}</h4>
             <LinkIcon>
-              <a href={portfolioItem.spotify} target="_blank"><FaSpotify size={30}/></a><a href={portfolioItem.appleMusic} target="_blank"><FaApple size={33}/></a>
+              <a href={portfolioItem.spotify} target="_blank"><FaSpotify color="black" size={30}/></a>
+            </LinkIcon>
+            <LinkIcon>
+              <a href={portfolioItem.appleMusic} target="_blank"><FaApple color="black" size={33}/></a>
             </LinkIcon>
             {visibleButtons ? null : <button onClick={props.onClickingEdit }>Update Item</button>}
             {visibleButtons ? null : <button onClick={()=> onClickingDelete(portfolioItem.id)}>Delete</button>}
@@ -87,11 +90,11 @@ const PortfolioDetail = (props) => {
             <h4>Album: {portfolioItem.albumName}</h4>
             <h4>Song: {portfolioItem.songName}</h4>
             <h4>Notes: {portfolioItem.description}</h4>
-            <LinkIcon>
-                <a href={portfolioItem.spotify} target="_blank"><FaSpotify/></a>
+            <LinkIcon href={portfolioItem.spotify} target="_blank">
+              <FaSpotify/>
             </LinkIcon>
-            <LinkIcon>
-            <a href={portfolioItem.appleMusic} target="_blank"><FaApple/></a>
+            <LinkIcon href={portfolioItem.appleMusic} target="_blank">
+              <FaApple/>
             </LinkIcon>
             <StyledButton onClick={props.onClickingEdit }>Update Item</StyledButton>
             <StyledButton onClick={()=> onClickingDelete(portfolioItem.id)}>Delete</StyledButton>

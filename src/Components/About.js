@@ -14,12 +14,14 @@ import { v4 as uuidv4 } from 'uuid';
 import styled from "styled-components";
 
 const AboutWrapper = styled.div`
-  margin-left: 10px;
+  padding-left: 0px
   margin-right: 10px;
-  width: 50%;
+  margin-left: 10px;
+  width: 90%;
   font-size: 1.5rem;
   @media (max-width: 699px) {
-    width: 98%;
+    width: 100%;
+    margin-left: -1px;
   }
 `
 
@@ -119,8 +121,8 @@ const About = () => {
         </div>
         {loading ? <h1>Loading...</h1> : null}
         {about.map((about) => (
-          <div className="about" key={about.id}>
-            <p>{about.desc}</p>
+          <div>key={about.id}
+            {about.desc}
             <div>
               <button onClick={() => deleteAbout(about)}>Delete</button>
               <button onClick={() => editAbout(about)}>Edit</button>
