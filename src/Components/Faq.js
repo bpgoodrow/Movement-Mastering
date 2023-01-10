@@ -52,7 +52,13 @@ const StyledButton = styled.button`
   width: 6rem;
 `
 
-const Faqs = ({question = "", answer = ""}) => {
+const FaqItem = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`
+
+const Faqs = () => {
 
   const [faqs, setFaqs] = useState([]);
   const [desc, setDesc] = useState();
@@ -60,6 +66,8 @@ const Faqs = ({question = "", answer = ""}) => {
   const [header, setHeader] = useState();
   const colletionRef = collection(db, 'faqs');
   const [loading, setLoading] = useState();
+
+  
 
   useEffect(() => {
     // const q = query(
@@ -130,12 +138,13 @@ const Faqs = ({question = "", answer = ""}) => {
       console.error(error);
     }
   }
-
-  // function handleToggle() {
-  //   setToggle(!toggle)
+  
+  // const onToggle = () => {
+  //   toggle ? setToggle(false) : setToggle(true);
   // }
   
   const onToggle = () => {
+    console.log(...faqs);
     toggle ? setToggle(false) : setToggle(true);
   }
 
@@ -146,11 +155,10 @@ const Faqs = ({question = "", answer = ""}) => {
     return (
       <>
       {loading ? <h1>Loading...</h1> : null}
-      {faqs.reverse().map((faqs) => (
+      {faqs.map((faqs) => (
         <>
-        <div className="faqs" key={faqs.id}>
-          {console.log(faqs.id)}
-          <div onClick={() => onToggle(!toggle)}>{ toggle ? close : open }<h3>{faqs.header}</h3></div>
+        <div key={faqs.id}>
+          <FaqItem onClick={() => onToggle()}>{ toggle ? close : open }&nbsp;<h3>{faqs.header}</h3></FaqItem>
           {toggle && (
             <p>{faqs.desc}</p>
           )}
@@ -161,8 +169,6 @@ const Faqs = ({question = "", answer = ""}) => {
       </>
     )
   }
-
-  
 
   return(
     <>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { CgMenu, CgClose } from 'react-icons/cg';
@@ -138,7 +138,7 @@ import { CgMenu, CgClose } from 'react-icons/cg';
 const Header = ({ handleScroll }) => {
 
   const [toggle, setToggle] = useState(false);
-  const [homeActive, setHomeActive] = useState(true);
+  const [homeActive, setHomeActive] = useState(false);
   const [faqActive, setFaqActive] = useState(false);
   const [contactActive, setContactActive] = useState(false);
 
@@ -149,8 +149,22 @@ const Header = ({ handleScroll }) => {
     window.location.reload(false);
   }
 
-  if (homeActive == true) {
-    
+  const handleHomeClick = () => {
+    setHomeActive(true);
+    setFaqActive(false);
+    setContactActive(false);
+  }
+
+  const handleFaqClick = () => {
+    setFaqActive(true);
+    setHomeActive(false);
+    setContactActive(false);
+  }
+
+  const handleContactClick = () => {
+    setContactActive(true);
+    setHomeActive(false);
+    setFaqActive(false);
   }
 
   return (
@@ -160,13 +174,13 @@ const Header = ({ handleScroll }) => {
         </div>
         <HeaderTitleAndLinksContainer>
           <HeaderLinkContainer>
-            <HomeLink to="/" onClick={() => setHomeActive(!homeActive)} homeActive={homeActive}>
+            <HomeLink to="/" onClick={handleHomeClick}homeActive={homeActive}>
               <StyledLink to="/">Home</StyledLink>
             </HomeLink>
-            <FaqLink to="/faq" onClick={() => setFaqActive(!faqActive)} faqActive={faqActive}>
+            <FaqLink to="/faq" onClick={handleFaqClick} faqActive={faqActive}>
               <StyledLink to="/faq">FAQ</StyledLink>
             </FaqLink>
-            <ContactLink onClick={() => setContactActive(!contactActive)} contactActive={contactActive}>
+            <ContactLink onClick={handleContactClick} contactActive={contactActive}>
               <StyledLink onClick={handleScroll}>Contact</StyledLink>
             </ContactLink>
           </HeaderLinkContainer>
