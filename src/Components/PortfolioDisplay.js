@@ -11,8 +11,6 @@ const Grid = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  justify-content: center;
-  align-content: center;
   width: 100%;
   gap: 10px;
 }

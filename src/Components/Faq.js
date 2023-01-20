@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import FaqQuestions from "./FaqQuestions";
 import {
   doc,
   onSnapshot,
@@ -15,48 +16,8 @@ import {
 } from 'firebase/firestore';
 import { db, auth } from './../firebase';
 import { v4 as uuidv4 } from 'uuid';
-import FaqQuestions from "./FaqQuestions";
 import styled from "styled-components";
-import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
-
-const StyledTextArea = styled.textarea`
-  border: solid light-gray 2px;
-  &:focus {
-    outline: none;
-    border: 2px solid black;
-  }
-  height: 2.5rem;
-  padding: .5rem;
-  outline: none;
-  width: 50vw;
-  @media (max-width: 700px) {
-    width: 80vw;
-  }
-`
-
-const StyledButton = styled.button`
-  border: solid black 1px;
-  background-color: black;
-  color: white;
-  cursor: pointer;
-  height: 2rem;
-    &:hover {
-      background-color: #282828;
-      border: 3px solid #282828;
-    }
-    &:active {
-      background-color: #484848;
-      border: 3px solid #484848;
-    }
-  margin-top: 1em;
-  width: 6rem;
-`
-
-const FaqItem = styled.div`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-`
+import { IoIosArrowForward, IoIosArrowDown, IoMdFastforward } from 'react-icons/io';
 
 const Faqs = () => {
 
@@ -66,8 +27,6 @@ const Faqs = () => {
   const [header, setHeader] = useState();
   const colletionRef = collection(db, 'faqs');
   const [loading, setLoading] = useState();
-
-  
 
   useEffect(() => {
     // const q = query(
@@ -139,10 +98,6 @@ const Faqs = () => {
     }
   }
   
-  // const onToggle = () => {
-  //   toggle ? setToggle(false) : setToggle(true);
-  // }
-  
   const onToggle = () => {
     console.log(...faqs);
     toggle ? setToggle(false) : setToggle(true);
@@ -169,9 +124,48 @@ const Faqs = () => {
       </>
     )
   }
+  
+  // const TestItem = ({question = "", answer = ""}) => {
+  //   const [isToggled, setIsToggled] = useState(false);
+
+  //   const onToggle = () => {
+  //       isToggled ? setIsToggled(false) : setIsToggled(true);
+  //   }
+  //   return(
+  //     <div className="faqs" key={faqs.id}>
+  //         {console.log(faqs.id)}
+  //         <FaqItem onClick={() => onToggle()}>{ toggle ? close : open }&nbsp;<h3>{question}</h3></FaqItem>
+  //         {toggle && (
+  //           <p>{answer}</p>
+  //         )}
+          
+  //         <div>
+  //           <StyledButton onClick={() => deleteFaqs(faqs)}>Delete</StyledButton>
+  //         </div>
+  //       <hr/>
+  //     </div>
+  //   )
+  // }
+
+  // if (auth.currentUser == null) {
+  //   return (
+  //     <>
+  //     {loading ? <h1>Loading...</h1> : null}
+  //     {faqs.map((FaqQuestions) => (
+  //       <>
+  //       <FaqQuestions
+  //         question={faqs.header}
+  //         answer={faqs.desc}
+  //         />
+  //       </>
+  //     ))}
+  //     </>
+  //   )
+  // }
+
 
   return(
-    <>
+    <FaqWrapper>
       <h1>Faq</h1>
       <div className="inputBox">
         <h3>Add New FAQ</h3>
@@ -196,8 +190,53 @@ const Faqs = () => {
         <hr/>
         </div>
       ))}
-    </>
+    </FaqWrapper>
   )
 }
+
+const StyledTextArea = styled.textarea`
+  border: solid light-gray 2px;
+  &:focus {
+    outline: none;
+    border: 2px solid black;
+  }
+  height: 2.5rem;
+  padding: .5rem;
+  outline: none;
+  width: 50vw;
+  @media (max-width: 700px) {
+    width: 80vw;
+  }
+`
+
+const StyledButton = styled.button`
+  border: solid black 1px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  height: 2rem;
+    &:hover {
+      background-color: #282828;
+      border: 3px solid #282828;
+    }
+    &:active {
+      background-color: #484848;
+      border: 3px solid #484848;
+    }
+  margin-top: 1em;
+  width: 6rem;
+`
+
+const FaqWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`
+
+const FaqItem = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`
 
 export default Faqs;

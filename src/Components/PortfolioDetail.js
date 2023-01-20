@@ -114,3 +114,11 @@ PortfolioDetail.propTypes = {
 };
 
 export default PortfolioDetail;
+
+// Arist and album title
+// song title
+// mastered by 
+// produced by
+// mixed by
+// if field blank render null
+// spotify and apple logo 20% larger

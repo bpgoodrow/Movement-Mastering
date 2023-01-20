@@ -1,43 +1,44 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const ReusableForm = (props) => {
 
   return (
     <div>
-      <form onSubmit={props.formSubmissionHandler}>
-        <input
+      <StyledForm onSubmit={props.formSubmissionHandler}>
+        <StyledInput
           type="text"
           name="artistName"
           placeholder="artist name"
           />
-        <input
+        <StyledInput
           type="text"
           name="albumName"
           placeholder="album name"
         />
-        <input
+        <StyledInput
           type="text"
           name="songName"
           placeholder="song name"
         />
-        <input
+        <StyledInput
           type="text"
           name="description"
           placeholder="description"
         />
-        <input
+        <StyledInput
           type="text"
           name="spotify"
           placeholder="spotify"
         />
-        <input
+        <StyledInput
           type="text"
           name="appleMusic"
           placeholder="apple music"
         />
-        <button type="submit">Submit</button>
-      </form>
+        <StyledButton type="submit">Submit</StyledButton>
+      </StyledForm>
     </div>
   )
 }
@@ -46,5 +47,43 @@ ReusableForm.propTypes = {
   formSubmissionHandler: PropTypes.func,
   buttonText: PropTypes.string
 };
+
+const StyledButton = styled.button`
+  border: solid black 1px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  height: 2rem;
+    &:hover {
+      background-color: #282828;
+      border: 3px solid #282828;
+    }
+    &:active {
+      background-color: #484848;
+      border: 3px solid #484848;
+    }
+  margin-top: 1em;
+  width: 6rem;
+`
+
+const StyledInput = styled.input`
+  border: solid light-gray 2px;
+  height: 1.5rem;
+  padding: .5rem;
+  width: 50vw;
+  margin-bottom: 1em;
+  &:focus {
+    outline: none;
+    border: 2px solid black;
+  }
+  @media (max-width: 700px) {
+    width: 80vw;
+  }
+`
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+`
 
 export default ReusableForm;

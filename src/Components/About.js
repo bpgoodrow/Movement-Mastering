@@ -17,12 +17,46 @@ const AboutWrapper = styled.div`
   padding-left: 0px
   margin-right: 10px;
   margin-left: 10px;
+  margin-bottom: 50px;
   width: 90%;
   font-size: 1.5rem;
   @media (max-width: 699px) {
     width: 100%;
     margin-left: -1px;
   }
+`
+
+const StyledTextArea = styled.textarea`
+  border: solid light-gray 2px;
+  &:focus {
+    outline: none;
+    border: 2px solid black;
+  }
+  height: 2.5rem;
+  padding: .5rem;
+  outline: none;
+  width: 50vw;
+  @media (max-width: 700px) {
+    width: 80vw;
+  }
+`
+
+const StyledButton = styled.button`
+  border: solid black 1px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  height: 2rem;
+    &:hover {
+      background-color: #282828;
+      border: 3px solid #282828;
+    }
+    &:active {
+      background-color: #484848;
+      border: 3px solid #484848;
+    }
+  margin-top: 1em;
+  width: 6rem;
 `
 
 const About = () => {
@@ -102,7 +136,7 @@ const About = () => {
   if (auth.currentUser == null) {
     return (
       <AboutWrapper>
-      <h1>About Movement Mastering</h1>
+      <h1>Movement Mastering</h1>
       {loading ? <h1>Loading...</h1> : null}
       {about.map((about) => (
         <div key={about.id}>
@@ -116,16 +150,16 @@ const About = () => {
       <AboutWrapper>
         <div>
           <h3>Update About</h3>
-          <textarea value={desc} onChange={(e) => setDesc(e.target.value)} />
-          <button onClick={() => addAbout()}>Submit</button>
+          <StyledTextArea value={desc} onChange={(e) => setDesc(e.target.value)} />
+          <StyledButton onClick={() => addAbout()}>Submit</StyledButton>
         </div>
         {loading ? <h1>Loading...</h1> : null}
         {about.map((about) => (
-          <div>key={about.id}
+          <div key={about.id}>
             {about.desc}
             <div>
-              <button onClick={() => deleteAbout(about)}>Delete</button>
-              <button onClick={() => editAbout(about)}>Edit</button>
+              <StyledButton onClick={() => deleteAbout(about)}>Delete</StyledButton>
+              <StyledButton onClick={() => editAbout(about)}>Edit</StyledButton>
             </div>
           </div>
         ))}
@@ -133,5 +167,7 @@ const About = () => {
     )
   }
 }
+
+
 
 export default About;

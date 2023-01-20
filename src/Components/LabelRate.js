@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-
+import styled from "styled-components";
 import {
   doc,
   onSnapshot,
@@ -91,11 +91,10 @@ const LabelRate = () => {
   return(
       <>
         <h1>LabelRates</h1>
-        <div className="inputBox">
+        <div>
           <h3>Add New</h3>
-          <h6>Description</h6>
-          <textarea value={desc} onChange={(e) => setDesc(e.target.value)} />
-          <button onClick={() => addLabelRate()}>Submit</button>
+          <StyledTextArea value={desc} onChange={(e) => setDesc(e.target.value)} />
+          <StyledButton onClick={() => addLabelRate()}>Submit</StyledButton>
         </div>
         <hr />
         {loading ? <h1>Loading...</h1> : null}
@@ -103,8 +102,7 @@ const LabelRate = () => {
           <div className="labelRate" key={labelRate.id}>
             <p>{labelRate.desc}</p>
             <div>
-              <button onClick={() => deleteLabelRate(labelRate)}>X</button>
-              <button onClick={() => editLabelRate(labelRate)}>Edit Score</button>
+              <StyledButton onClick={() => deleteLabelRate(labelRate)}>Delete</StyledButton>
             </div>
           </div>
         ))}
@@ -112,5 +110,38 @@ const LabelRate = () => {
     )
   }
 }
+
+const StyledTextArea = styled.textarea`
+  border: solid light-gray 2px;
+  &:focus {
+    outline: none;
+    border: 2px solid black;
+  }
+  height: 2.5rem;
+  padding: .5rem;
+  outline: none;
+  width: 50vw;
+  @media (max-width: 700px) {
+    width: 80vw;
+  }
+`
+
+const StyledButton = styled.button`
+  border: solid black 1px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  height: 2rem;
+    &:hover {
+      background-color: #282828;
+      border: 3px solid #282828;
+    }
+    &:active {
+      background-color: #484848;
+      border: 3px solid #484848;
+    }
+  margin-top: 1em;
+  width: 6rem;
+`
 
 export default LabelRate;

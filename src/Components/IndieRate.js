@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-
+import styled from "styled-components";
 import {
   doc,
   onSnapshot,
@@ -106,8 +106,8 @@ const IndieRate = () => {
       <div className="inputBox">
         <h3>Add New</h3>
         <h6>Description</h6>
-        <textarea value={desc} onChange={(e) => setDesc(e.target.value)} />
-        <button onClick={() => addIndieRate()}>Submit</button>
+        <StyledTextArea value={desc} onChange={(e) => setDesc(e.target.value)} />
+        <StyledButton onClick={() => addIndieRate()}>Submit</StyledButton>
       </div>
       <hr />
       {loading ? <h1>Loading...</h1> : null}
@@ -115,13 +115,45 @@ const IndieRate = () => {
         <div className="indieRate" key={indieRate.id}>
           <p>{indieRate.desc}</p>
           <div>
-            <button onClick={() => deleteIndieRate(indieRate)}>X</button>
-            <button onClick={() => editIndieRate(indieRate)}>Edit</button>
+            <StyledButton onClick={() => deleteIndieRate(indieRate)}>Delete</StyledButton>
           </div>
         </div>
       ))}
     </>
   )
 }
+
+const StyledTextArea = styled.textarea`
+  border: solid light-gray 2px;
+  &:focus {
+    outline: none;
+    border: 2px solid black;
+  }
+  height: 2.5rem;
+  padding: .5rem;
+  outline: none;
+  width: 50vw;
+  @media (max-width: 700px) {
+    width: 80vw;
+  }
+`
+
+const StyledButton = styled.button`
+  border: solid black 1px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  height: 2rem;
+    &:hover {
+      background-color: #282828;
+      border: 3px solid #282828;
+    }
+    &:active {
+      background-color: #484848;
+      border: 3px solid #484848;
+    }
+  margin-top: 1em;
+  width: 6rem;
+`
 
 export default IndieRate;

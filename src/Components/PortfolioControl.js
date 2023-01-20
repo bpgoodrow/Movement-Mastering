@@ -4,11 +4,11 @@ import PortfolioDisplay from "./PortfolioDisplay";
 import PortfolioDetail from "./PortfolioDetail";
 import NewPortfolioForm from "./NewPortfolioForm";
 import EditPortfolioItemForm from "./EditPortfolioItemForm";
-
 import { db, auth, storage } from './../firebase';
 import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from "uuid";
+import styled from "styled-components";
 
 const PortfolioControl = () => {
 
@@ -174,21 +174,42 @@ const PortfolioControl = () => {
       currentlyVisibleState = 
       <>
         <About />
+        <input type= "file" onChange={(event) => {setImageUpload(event.target.files[0])}}/>
+        <StyledButton onClick={uploadImage}>Upload</StyledButton>
         <PortfolioDisplay onPortfolioItemSelection=
         {handleChangingSelectedPortfolioItem} portfolioDisplay={portfolioDisplay}
         />
-        buttonText = "Add Item"
       </>
     }
     return(
       <div>
-        <input type= "file" onChange={(event) => {setImageUpload(event.target.files[0])}}/>
         {currentlyVisibleState}
-        {error ? null : <button onClick={handleClick}>{buttonText}</button>}
-        <button onClick={uploadImage}>Upload Image</button>
+        
+        {error ? null : <StyledButton onClick={handleClick}>{buttonText}</StyledButton>}
+        
       </div>
     )
   }
 }
 
+const StyledButton = styled.button`
+  border: solid black 1px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  height: 2rem;
+    &:hover {
+      background-color: #282828;
+      border: 3px solid #282828;
+    }
+    &:active {
+      background-color: #484848;
+      border: 3px solid #484848;
+    }
+  margin-top: 1em;
+  width: 6rem;
+`
+
 export default PortfolioControl;
+
+// show album name and arist on hover

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { auth } from "./../firebase.js"
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import styled from "styled-components";
 
 const Login = () => {
 
@@ -23,7 +24,7 @@ const Login = () => {
   function doSignOut(event) {
     signOut(auth)
       .then(function() {
-        setSignOutSuccess("You have logged out")
+        setSignOutSuccess("You logged out")
       }).catch(function(error) {
         setSignOutSuccess(`There was an error signing out: ${error.message}!`);
       });
@@ -31,26 +32,64 @@ const Login = () => {
 
   return(
     <div>
-    <h3>Login</h3>
+    <h1>Login</h1>
     {signInSuccess}
-      <form onSubmit={doSignIn}>
-        <input
+      <StyledForm onSubmit={doSignIn}>
+        <StyledInput
           type='text'
           name='signinEmail'
           placeholder='email' />
-        <input
+        <StyledInput
           type='password'
           name='signinPassword'
           placeholder='Password' />
-        <button type='submit'>Sign in</button>
-      </form>
+        <StyledButton type='submit'>Sign in</StyledButton>
+      </StyledForm>
 
       <h1>Sign Out</h1>
       {signOutSuccess}
       <br />
-      <button onClick={doSignOut}>Sign out</button>
+      <StyledButton onClick={doSignOut}>Sign out</StyledButton>
       </div>
   );
 }
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+`
+
+const StyledButton = styled.button`
+  border: solid black 1px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  height: 2rem;
+    &:hover {
+      background-color: #282828;
+      border: 3px solid #282828;
+    }
+    &:active {
+      background-color: #484848;
+      border: 3px solid #484848;
+    }
+  margin-top: 1em;
+  width: 6rem;
+`
+
+const StyledInput = styled.input`
+  border: solid light-gray 2px;
+  height: 1.5rem;
+  padding: .5rem;
+  width: 50vw;
+  margin-bottom: 1em;
+  &:focus {
+    outline: none;
+    border: 2px solid black;
+  }
+  @media (max-width: 700px) {
+    width: 80vw;
+  }
+`
 
 export default Login;

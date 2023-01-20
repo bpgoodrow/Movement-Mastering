@@ -9,7 +9,8 @@ import styled from "styled-components";
 const AppContainer = styled.div`
 display: flex;
 justify-content: center;
-font-family: Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+font-family: 'DM Sans', sans-serif;
 `
 
 const StyledApp = styled.div`
@@ -34,16 +35,13 @@ function App() {
     });
   }
 
-
   return (
     <AppContainer>
       <StyledApp>
         <Router>
           <Header handleScroll={handleScroll}/>
           <RoutePath />
-          <div id="contact">
-            <Contact />
-          </div>
+          <Contact />
         </Router>
       </StyledApp>
     </AppContainer>

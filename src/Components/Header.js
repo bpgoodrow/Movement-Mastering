@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { CgMenu, CgClose } from 'react-icons/cg';
@@ -70,16 +70,6 @@ import { CgMenu, CgClose } from 'react-icons/cg';
     }
   `;
 
-  const HeaderLinkSelected = styled(NavLink)`
-    border-bottom: solid black .5px
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1em;
-    @media (max-width: 700px) {
-      display: none
-  `
-
   const StyledLink = styled(NavLink)`
     align-items: center;
     font-size: 1.2rem;
@@ -121,24 +111,10 @@ import { CgMenu, CgClose } from 'react-icons/cg';
     cursor: pointer;
   `
 
-  const SlideLink = styled(NavLink)`
-    slide-left {
-      animation: 3s slide-left;
-    }
-    @keyframes slide-left {
-      from {
-        margin-left: 100%;
-      }
-      to {
-        margin-left: 0%;
-      }
-    }
-  `
-
 const Header = ({ handleScroll }) => {
 
   const [toggle, setToggle] = useState(false);
-  const [homeActive, setHomeActive] = useState(false);
+  const [homeActive, setHomeActive] = useState(true);
   const [faqActive, setFaqActive] = useState(false);
   const [contactActive, setContactActive] = useState(false);
 
@@ -189,15 +165,15 @@ const Header = ({ handleScroll }) => {
           <div onClick={() => setToggle(!toggle)}>{ toggle ? close : open }</div>
           {toggle && (
             <>
-              <HomeLink onClick={() => setHomeActive(!homeActive)} homeActive={homeActive}>
+              <FaqLink to="/faq" onClick={handleFaqClick} faqActive={faqActive}>
                 <StyledLink to="/faq">FAQ</StyledLink>
-              </HomeLink>
-              <FaqLink onClick={() => setFaqActive(!faqActive)} faqActive={faqActive}>
-                <StyledLink onClick={handleScroll}>Contact</StyledLink>
               </FaqLink>
-              <ContactLink onClick={() => setContactActive(!contactActive)} contactActive={contactActive}>
-                <StyledLink to="/">Home</StyledLink>
+              <ContactLink onClick={handleContactClick} contactActive={contactActive}>
+                <StyledLink onClick={handleScroll}>Contact</StyledLink>
               </ContactLink>
+              <HomeLink to="/" onClick={handleHomeClick}homeActive={homeActive}>
+                <StyledLink to="/">Home</StyledLink>
+              </HomeLink>
             </>
           )}
         </HamburgerToggle>
@@ -206,3 +182,5 @@ const Header = ({ handleScroll }) => {
 }
 
 export default Header;
+
+// mobile nav animate slide from right to left
