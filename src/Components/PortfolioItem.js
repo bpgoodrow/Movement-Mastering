@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import './PortfolioItem.css';
 import styled, { css } from "styled-components";
 
 const AlbumImage = styled.img`
@@ -8,6 +7,7 @@ const AlbumImage = styled.img`
   width: 100%;
   &:hover {
     opacity: .5;
+    filter: blur(1.5px);
   }
 `
 
@@ -60,7 +60,9 @@ PortfolioItem.propsTypes = {
   artistName: PropTypes.string.isRequired,
   albumName: PropTypes.string.isRequired,
   songName: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  masteredBy: PropTypes.string.isRequired,
+  producedBy: PropTypes.string.isRequired,
+  mixedBy: PropTypes.string.isRequired,
   spotify: PropTypes.string.isRequired,
   appleMusic: PropTypes.string.isRequired,
   id: PropTypes.string,

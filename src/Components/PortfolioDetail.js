@@ -30,6 +30,7 @@ const InfoContainer = styled.div`
 
 const LinkIcon = styled.a`
   cursor: pointer;
+  width: 12%;
 `
 
 const StyledButton = styled.button`
@@ -63,13 +64,11 @@ const PortfolioDetail = (props) => {
           <InfoContainer>
             <h2>{portfolioItem.artistName} | {portfolioItem.albumName}</h2>
             <h4>Song {portfolioItem.songName}</h4>
-            <h4>Notes {portfolioItem.description}</h4>
-            <LinkIcon>
-              <a href={portfolioItem.spotify} target="_blank"><FaSpotify color="black" size={30}/></a>
-            </LinkIcon>
-            <LinkIcon>
-              <a href={portfolioItem.appleMusic} target="_blank"><FaApple color="black" size={33}/></a>
-            </LinkIcon>
+            <h4>Mastered By {portfolioItem.masteredBy}</h4>
+            <h4>Produced By {portfolioItem.producedBy}</h4>
+            <h4>Mixed By {portfolioItem.mixedBy}</h4>
+              <LinkIcon href={portfolioItem.spotify} target="_blank"><FaSpotify color="black" size={35}/></LinkIcon>
+              <LinkIcon href={portfolioItem.appleMusic} target="_blank"><FaApple color="black" size={39}/></LinkIcon>
             {visibleButtons ? null : <button onClick={props.onClickingEdit }>Update Item</button>}
             {visibleButtons ? null : <button onClick={()=> onClickingDelete(portfolioItem.id)}>Delete</button>}
             
@@ -86,10 +85,13 @@ const PortfolioDetail = (props) => {
         <DetailContainer>
           <AlbumImage src={portfolioItem.albumCover} />
           <InfoContainer>
-            <h4>Artist: {portfolioItem.artistName}</h4>
-            <h4>Album: {portfolioItem.albumName}</h4>
-            <h4>Song: {portfolioItem.songName}</h4>
-            <h4>Notes: {portfolioItem.description}</h4>
+            <h4>Artist {portfolioItem.artistName}</h4>
+            <h4>Album {portfolioItem.albumName}</h4>
+            <h4>Song {portfolioItem.songName}</h4>
+            <h4>Mastered By {portfolioItem.masteredBy}</h4>
+            <h4>Produced By {portfolioItem.producedBy}</h4>
+            <h4>Mixed By {portfolioItem.mixedBy}</h4>
+            <h4></h4>
             <LinkIcon href={portfolioItem.spotify} target="_blank">
               <FaSpotify/>
             </LinkIcon>
@@ -115,7 +117,7 @@ PortfolioDetail.propTypes = {
 
 export default PortfolioDetail;
 
-// Arist and album title
+// Artist and album title
 // song title
 // mastered by 
 // produced by

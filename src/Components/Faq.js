@@ -29,15 +29,6 @@ const Faqs = () => {
   const [loading, setLoading] = useState();
 
   useEffect(() => {
-    // const q = query(
-    //   colletionRef,
-      //  where('owner', '==', currentUserId),
-      // where('desc', '==', 'faqs1') // does not need index
-      //  where('score', '<=', 100) // needs index  https://firebase.google.com/docs/firestore/query-data/indexing?authuser=1&hl=en
-      // orderBy('score', 'asc'), // be aware of limitations: https://firebase.google.com/docs/firestore/query-data/order-limit-data#limitations
-      // limit(1)
-    // );
-
     setLoading(true);
     // const unsub = onSnapshot(q, (querySnapshot) => {
     const unsub = onSnapshot(colletionRef, (querySnapshot) => {
@@ -51,8 +42,6 @@ const Faqs = () => {
     return () => {
       unsub();
     };
-
-    // eslint-disable-next-line
   }, []);
 
   async function addFaqs() {
@@ -124,46 +113,7 @@ const Faqs = () => {
       </>
     )
   }
-  
-  // const TestItem = ({question = "", answer = ""}) => {
-  //   const [isToggled, setIsToggled] = useState(false);
-
-  //   const onToggle = () => {
-  //       isToggled ? setIsToggled(false) : setIsToggled(true);
-  //   }
-  //   return(
-  //     <div className="faqs" key={faqs.id}>
-  //         {console.log(faqs.id)}
-  //         <FaqItem onClick={() => onToggle()}>{ toggle ? close : open }&nbsp;<h3>{question}</h3></FaqItem>
-  //         {toggle && (
-  //           <p>{answer}</p>
-  //         )}
-          
-  //         <div>
-  //           <StyledButton onClick={() => deleteFaqs(faqs)}>Delete</StyledButton>
-  //         </div>
-  //       <hr/>
-  //     </div>
-  //   )
-  // }
-
-  // if (auth.currentUser == null) {
-  //   return (
-  //     <>
-  //     {loading ? <h1>Loading...</h1> : null}
-  //     {faqs.map((FaqQuestions) => (
-  //       <>
-  //       <FaqQuestions
-  //         question={faqs.header}
-  //         answer={faqs.desc}
-  //         />
-  //       </>
-  //     ))}
-  //     </>
-  //   )
-  // }
-
-
+ 
   return(
     <FaqWrapper>
       <h1>Faq</h1>

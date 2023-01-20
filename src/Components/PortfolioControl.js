@@ -56,7 +56,9 @@ const PortfolioControl = () => {
             artistName: doc.data().artistName,
             albumName: doc.data().albumName,
             songName: doc.data().songName,
-            description: doc.data().description,
+            masteredBy: doc.data().masteredBy,
+            producedBy: doc.data().producedBy,
+            mixedBy: doc.data().mixedBy,
             spotify: doc.data().spotify,
             appleMusic: doc.data().appleMusic,
             albumCover: doc.data().albumCover,
@@ -211,5 +213,3 @@ const StyledButton = styled.button`
 `
 
 export default PortfolioControl;
-
-// show album name and arist on hover

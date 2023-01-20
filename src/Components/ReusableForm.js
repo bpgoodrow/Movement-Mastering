@@ -24,8 +24,18 @@ const ReusableForm = (props) => {
         />
         <StyledInput
           type="text"
-          name="description"
-          placeholder="description"
+          name="masteredBy"
+          placeholder="Mastered By"
+        />
+        <StyledInput
+          type="text"
+          name="producedBy"
+          placeholder="Produced By"
+        />
+        <StyledInput
+          type="text"
+          name="mixedBy"
+          placeholder="Mixed By"
         />
         <StyledInput
           type="text"
