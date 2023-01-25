@@ -5,8 +5,7 @@ import { BsInstagram } from "react-icons/bs"
 import { AiOutlineInstagram, AiFillTwitterCircle } from "react-icons/ai"
 
 const ContactWrapper = styled.div`
-  margin-left: 10px;
-  margin-right: 10px;
+
   margin-top: 50px;
   margin-bottom: 50px;
 `

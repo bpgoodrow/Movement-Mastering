@@ -5,9 +5,11 @@ import styled from "styled-components";
 import { FaApple, FaSpotify } from "react-icons/fa";
 
 const AlbumImage = styled.img`
-  width: 50%;
+  max-width: 50%;
+  object-fit: cover;
+  height: auto;
   @media (max-width: 799px) {
-    width: 100%;
+    max-width: 100%;
   }
 `
 
@@ -21,8 +23,9 @@ const DetailContainer = styled.div`
 
 const InfoContainer = styled.div`
   display: flex;
-  margin-left: 50px;
+  margin-left: 10%;
   flex-direction: column;
+  justify-content: center;
   @media (max-width: 799px) {
     margin-left: 0px;
   }

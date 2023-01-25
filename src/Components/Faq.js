@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
+import FaqItems from "./FaqItems";
+import ArrowToggle from "./ArrowToggle";
 import {
   doc,
   onSnapshot,
-  updateDoc,
   setDoc,
   deleteDoc,
   collection,
@@ -10,8 +11,8 @@ import {
 } from 'firebase/firestore';
 import { db, auth } from './../firebase';
 import { v4 as uuidv4 } from 'uuid';
-import styled from "styled-components";
-import { IoIosArrowForward, IoIosArrowDown, IoMdFastforward } from 'react-icons/io';
+import styled, { keyframes } from "styled-components";
+import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 
 const Faqs = () => {
 
@@ -68,24 +69,9 @@ const Faqs = () => {
       console.error(error);
     }
   }
-
-  // EDIT FUNCTION
-  async function editFaqs(faqs) {
-    console.log(editFaqs, "edit working")
-    const updatedFaqs = {
-      lastUpdate: serverTimestamp(),
-    };
-
-    try {
-      const faqsRef = doc(colletionRef, faqs.id);
-      updateDoc(faqsRef, updatedFaqs);
-    } catch (error) {
-      console.error(error);
-    }
-  }
   
   const onToggle = () => {
-    console.log(...faqs);
+    console.log(faqs);
     toggle ? setToggle(false) : setToggle(true);
   }
 
@@ -98,7 +84,6 @@ const Faqs = () => {
       newState.splice(index, 1, !prevExpandedIndexes[index]);
       return newState;
     });
-    
   };
 
   if (auth.currentUser == null) {
@@ -109,15 +94,14 @@ const Faqs = () => {
           {faqs.map(({header, desc}, index) => (
             <div key={faqs.id} className="details-wrapper">
               <div>
-                
-                <FaqItem onClick={() => (handleClick(index), onToggle())}>{ toggle ? close : open }&nbsp;<h3>{header}</h3></FaqItem>
+                <FaqItem onClick={() => (handleClick(index))}><ArrowToggle/><h3>{header}</h3></FaqItem>
               </div>
               <p
                 className="text"
                 // check for each child's state to display correctly
-                style={{ display: expandedIndexes[index] ? "block" : "none" }}
+                style={{ transition: "all 0.1s linear", display: expandedIndexes[index] ? "block" : "none" }}
               >
-                {desc}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{desc}
               </p>
               <hr/>
             </div>
@@ -140,7 +124,6 @@ const Faqs = () => {
           {faqs.map(({header, desc}, index) => (
             <div key={faqs.id} className="details-wrapper">
               <div>
-                
                 <FaqItem onClick={() => (handleClick(index), onToggle())}>{ toggle ? close : open }&nbsp;<h3>{header}</h3></FaqItem>
               </div>
               <p

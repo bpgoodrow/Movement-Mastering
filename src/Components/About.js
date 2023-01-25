@@ -14,7 +14,6 @@ import { v4 as uuidv4 } from 'uuid';
 import styled from "styled-components";
 
 const AboutWrapper = styled.div`
-  margin-left: 5%;
   margin-bottom: 100px;
   font-size: 1.5rem;
 `

@@ -9,14 +9,18 @@ import {
   collection,
   serverTimestamp,
 } from 'firebase/firestore';
-import { db, auth } from './../firebase';
-import { v4 as uuidv4 } from 'uuid';
+import { db, auth, storage } from './../firebase';
+import { ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage';
+import { v4 } from 'uuid';
 const LabelRate = () => {
 
   const [labelRate, setLabelRate] = useState([]);
   const [desc, setDesc] = useState('');
   const colletionRef = collection(db, 'labelRate');
   const [loading, setLoading] = useState(false);
+  const [imageList, setImageList] = useState([]);
+  const [imageUrls, setImageUrls] = useState([]);
+  const [imageUpload, setImageUpload] = useState(null);
 
   useEffect(() => {
 
@@ -38,7 +42,7 @@ const LabelRate = () => {
 
     const newLabelRate = {
       desc,
-      id: uuidv4(),
+      id: v4(),
       createdAt: serverTimestamp(),
       lastUpdate: serverTimestamp(),
     };
@@ -73,15 +77,39 @@ const LabelRate = () => {
     }
   }
 
+  const imagesListRef = ref(storage, "labelRate/");
+  const uploadFile = () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `labelindieRate/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrls((prev) => [...prev, url]);
+      });
+    });
+  };
+
+  useEffect(() => {
+    listAll(imagesListRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          setImageUrls((prev) => [...prev, url]);
+        });
+      });
+    });
+  }, []);
+
   if (auth.currentUser == null){
     return (
       <>
       {loading ? <h1>Loading...</h1> : null}
         {labelRate.map((labelRate) => (
-          <div className="labelRate" key={labelRate.id}>
+          <div>
             <p>{labelRate.desc}</p>
           </div>
         ))}
+        {imageUrls.map((url) => {
+        return <img src={url} />;
+      })}
       </>
     )
   }
@@ -106,6 +134,16 @@ const LabelRate = () => {
             </div>
           </div>
         ))}
+        <input
+        type="file"
+        onChange={(event) => {
+          setImageUpload(event.target.files[0]);
+        }}
+      />
+        <button onClick={uploadFile}> Upload Image</button>
+        {imageUrls.map((url) => {
+        return <img src={url} />;
+      })}
       </>
     )
   }
