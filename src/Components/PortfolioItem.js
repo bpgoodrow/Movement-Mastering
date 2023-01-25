@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const AlbumImage = styled.img`
   cursor: pointer;
@@ -15,7 +15,7 @@ const ImgContainer = styled.div`
 position: relative;
 display: flex;
 flex-direction: column;
-width: 30%;
+width: 31%;
 margin: 10px;
 background-color: black;
 @media (max-width: 899px){
@@ -23,7 +23,6 @@ background-color: black;
 }
 @media (max-width: 699px) {
   width: 95%;
-  margin-bottom: -10px;
   justify-content: center;
 }
 `

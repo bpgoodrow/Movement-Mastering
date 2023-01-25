@@ -5,20 +5,17 @@ import styled from "styled-components";
 
 const Grid = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   @media (max-width: 699px) {
   display: flex;
   flex-direction: column;
   flex: 1;
-  width: 100%;
-  gap: 10px;
 }
 `
 
 const PortfolioDisplay = (props) => {
   return(
-    <>
     <Grid>
         {[...Object.values(props.portfolioDisplay)].reverse().map((portfolioItem) =>
         <PortfolioItem
@@ -37,7 +34,6 @@ const PortfolioDisplay = (props) => {
           />
         )}
     </Grid>
-    </>
   );
 }
 

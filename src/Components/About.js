@@ -14,16 +14,9 @@ import { v4 as uuidv4 } from 'uuid';
 import styled from "styled-components";
 
 const AboutWrapper = styled.div`
-  padding-left: 0px
-  margin-right: 10px;
-  margin-left: 10px;
-  margin-bottom: 50px;
-  width: 90%;
+  margin-left: 5%;
+  margin-bottom: 100px;
   font-size: 1.5rem;
-  @media (max-width: 699px) {
-    width: 100%;
-    margin-left: -1px;
-  }
 `
 
 const StyledTextArea = styled.textarea`
@@ -150,7 +143,7 @@ const About = () => {
       <AboutWrapper>
         <div>
           <h3>Update About</h3>
-          <StyledTextArea value={desc} onChange={(e) => setDesc(e.target.value)} />
+          <StyledTextArea value={desc} placeholder={about.map((about) => (about.desc))} onChange={(e) => setDesc(e.target.value)} />
           <StyledButton onClick={() => addAbout()}>Submit</StyledButton>
         </div>
         {loading ? <h1>Loading...</h1> : null}
@@ -159,7 +152,6 @@ const About = () => {
             {about.desc}
             <div>
               <StyledButton onClick={() => deleteAbout(about)}>Delete</StyledButton>
-              <StyledButton onClick={() => editAbout(about)}>Edit</StyledButton>
             </div>
           </div>
         ))}

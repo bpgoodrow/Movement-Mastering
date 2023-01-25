@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import FaqQuestions from "./FaqQuestions";
 import {
   doc,
   onSnapshot,
@@ -8,11 +7,6 @@ import {
   deleteDoc,
   collection,
   serverTimestamp,
-  getDocs,
-  query,
-  where,
-  orderBy,
-  limit,
 } from 'firebase/firestore';
 import { db, auth } from './../firebase';
 import { v4 as uuidv4 } from 'uuid';
@@ -23,10 +17,13 @@ const Faqs = () => {
 
   const [faqs, setFaqs] = useState([]);
   const [desc, setDesc] = useState();
-  const [toggle, setToggle] = useState(false);
   const [header, setHeader] = useState();
+  const [toggle, setToggle] = useState(false);
   const colletionRef = collection(db, 'faqs');
   const [loading, setLoading] = useState();
+  const [expandedIndexes, setExpandedIndexes] = useState(
+    Array(faqs.length).fill(false)
+  );
 
   useEffect(() => {
     setLoading(true);
@@ -95,53 +92,70 @@ const Faqs = () => {
   const open = <IoIosArrowForward size="30px" color="black" />
   const close = <IoIosArrowDown size="30px" color="black" />
 
+  const handleClick = (index) => {
+    setExpandedIndexes((prevExpandedIndexes) => {
+      const newState = [...prevExpandedIndexes];
+      newState.splice(index, 1, !prevExpandedIndexes[index]);
+      return newState;
+    });
+    
+  };
+
   if (auth.currentUser == null) {
     return (
       <>
-      {loading ? <h1>Loading...</h1> : null}
-      {faqs.map((faqs) => (
-        <>
-        <div key={faqs.id}>
-          <FaqItem onClick={() => onToggle()}>{ toggle ? close : open }&nbsp;<h3>{faqs.header}</h3></FaqItem>
-          {toggle && (
-            <p>{faqs.desc}</p>
-          )}
-          <hr/>
-          </div>
-        </>
-      ))}
+      <FaqWrapper>
+          {loading ? <h1>Loading...</h1> : null}
+          {faqs.map(({header, desc}, index) => (
+            <div key={faqs.id} className="details-wrapper">
+              <div>
+                
+                <FaqItem onClick={() => (handleClick(index), onToggle())}>{ toggle ? close : open }&nbsp;<h3>{header}</h3></FaqItem>
+              </div>
+              <p
+                className="text"
+                // check for each child's state to display correctly
+                style={{ display: expandedIndexes[index] ? "block" : "none" }}
+              >
+                {desc}
+              </p>
+              <hr/>
+            </div>
+          ))}
+        </FaqWrapper>
       </>
     )
-  }
- 
-  return(
-    <FaqWrapper>
-      <h1>Faq</h1>
-      <div className="inputBox">
-        <h3>Add New FAQ</h3>
-        <h6>FAQ</h6>
-        <StyledTextArea value={header} onChange={(e) => setHeader(e.target.value)} />
-        <h6>Answer</h6>
-        <StyledTextArea value={desc} onChange={(e) => setDesc(e.target.value)} />
-        <StyledButton onClick={() => addFaqs()}>Submit</StyledButton>
-      </div>
-      {loading ? <h1>Loading...</h1> : null}
-      {faqs.reverse().map((faqs) => (
-        <div className="faqs" key={faqs.id}>
-          {console.log(faqs.id)}
-          <div onClick={onToggle}><h3>{faqs.header}</h3></div>
-          {toggle && (
-            <p>{faqs.desc}</p>
-          )}
-          
+  } else {
+      return(
+        <FaqWrapper>
           <div>
-            <StyledButton onClick={() => deleteFaqs(faqs)}>Delete</StyledButton>
+            <h3>Add New FAQ</h3>
+            <h6>FAQ</h6>
+            <StyledTextArea value={header} onChange={(e) => setHeader(e.target.value)} />
+            <h6>Answer</h6>
+            <StyledTextArea value={desc} onChange={(e) => setDesc(e.target.value)} />
+            <StyledButton onClick={() => addFaqs()}>Submit</StyledButton>
           </div>
-        <hr/>
-        </div>
-      ))}
-    </FaqWrapper>
-  )
+          {loading ? <h1>Loading...</h1> : null}
+          {faqs.map(({header, desc}, index) => (
+            <div key={faqs.id} className="details-wrapper">
+              <div>
+                
+                <FaqItem onClick={() => (handleClick(index), onToggle())}>{ toggle ? close : open }&nbsp;<h3>{header}</h3></FaqItem>
+              </div>
+              <p
+                className="text"
+                // check for each child's state to display correctly
+                style={{ display: expandedIndexes[index] ? "block" : "none" }}
+              >
+                {desc}
+              </p>
+              <hr/>
+            </div>
+          ))}
+        </FaqWrapper>
+      )
+    }
 }
 
 const StyledTextArea = styled.textarea`
@@ -178,9 +192,7 @@ const StyledButton = styled.button`
 `
 
 const FaqWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+ 
 `
 
 const FaqItem = styled.div`

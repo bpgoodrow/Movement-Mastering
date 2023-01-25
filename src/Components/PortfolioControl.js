@@ -153,7 +153,7 @@ const PortfolioControl = () => {
   } else if (auth.currentUser !== null) {
 
     let currentlyVisibleState = null;
-    let buttonText = null;
+    let buttonText = "Add New";
 
     if (error) {
       currentlyVisibleState = <p>There was an error: {error}</p>

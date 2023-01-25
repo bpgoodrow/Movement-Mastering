@@ -6,15 +6,11 @@ import { CgMenu, CgClose } from 'react-icons/cg';
   const HeaderContainer = styled.div`
     display: flex;
     align-items: center;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
   `;
 
   const HomeLink = styled(NavLink)`
     text-decoration: none;
-    margin: 1rem;
     cursor: pointer;
     border-bottom: ${(props) => (props.homeActive ? 'solid black .5px' : 'none')};
     &:hover {
@@ -27,7 +23,7 @@ import { CgMenu, CgClose } from 'react-icons/cg';
 
   const FaqLink = styled(NavLink)`
     text-decoration: none;
-    margin: 1rem;
+    margin-left: 1rem;
     cursor: pointer;
     border-bottom: 
       ${(props) => (props.faqActive ? 'solid black .5px' : 'none')};
@@ -41,8 +37,8 @@ import { CgMenu, CgClose } from 'react-icons/cg';
 
   const ContactLink = styled(NavLink)`
     text-decoration: none;
-    margin: 1rem;
     cursor: pointer;
+    margin-left: 1rem;
     border-bottom: 
       ${(props) => (props.contactActive ? 'solid black .5px' : 'none')};
     &:hover {
@@ -62,9 +58,9 @@ import { CgMenu, CgClose } from 'react-icons/cg';
 
   const HeaderLinkContainer = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 1em;
+    
     @media (max-width: 700px) {
       display: none
     }

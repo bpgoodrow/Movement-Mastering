@@ -14,15 +14,12 @@ font-family: 'DM Sans', sans-serif;
 `
 
 const StyledApp = styled.div`
-  @media (min-width: 1500px){
-    margin-left: 200px;
-    margin-right: 200px;
-  }
-  margin-left: 100px;
-  margin-right: 100px;
+  width: 90%;
+  margin-top: 10px;
   @media (max-width: 699px) {
     margin-left: 10px;
     margin-right: 10px;
+    width: 95%;
   }
 `
 
