@@ -86,6 +86,7 @@ import { CgMenu, CgClose } from 'react-icons/cg';
     position: absolute;
     z-index: 0;
     right: 0;
+    margin-right: 1%;
     overflow: hidden;
     @media (min-width: 699px) {
       display: none;
@@ -94,7 +95,7 @@ import { CgMenu, CgClose } from 'react-icons/cg';
 
   const MovementMasteringLogo = styled.img`
   cursor: pointer;
-    width: 150px;
+    width: 250px;
     @media (max-width: 699px) {
       width: 100px;
     }
@@ -142,7 +143,7 @@ const Header = ({ handleScroll }) => {
   return (
       <HeaderContainer>
         <div onClick={refreshPage}>
-          <MovementMasteringLogo src="./MovementMastering.png" alt="Movement Mastering Logo" />
+          <MovementMasteringLogo src="./movement_mixing_logo1.png" alt="Movement Mastering Logo" />
         </div>
         <HeaderTitleAndLinksContainer>
           <HeaderLinkContainer>

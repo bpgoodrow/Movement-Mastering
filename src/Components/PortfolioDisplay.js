@@ -5,13 +5,22 @@ import styled from "styled-components";
 
 const Grid = styled.div`
   display: flex;
-  margin-left: -30px;
-  margin-right: -30px;
-  justify-content: center;
   flex-wrap: wrap;
-  @media (max-width: 699px) {
   margin-left: -10px;
-  margin-right: -10px;
+  margin-right: -4%;
+  @media (max-width: 1900px) {
+    margin-right: -3.5%;
+  }
+  @media (max-width: 1500px) {
+    margin-right: -2.5%;
+  }
+  @media (max-width: 1200px) {
+    margin-right: -2%;
+  }
+  @media (max-width: 699px) {
+  justify-content: center;
+  margin-left: -10px;
+  margin-right: -11px;
   display: flex;
   flex-direction: column;
   flex: 1;

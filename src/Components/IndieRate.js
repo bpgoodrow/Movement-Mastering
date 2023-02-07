@@ -9,9 +9,10 @@ import {
   collection,
   serverTimestamp,
 } from 'firebase/firestore';
-import { db, auth, storage } from './../firebase';
-import { ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage';
+import { db, auth, storage } from '../firebase';
+import { ref, uploadBytes, getDownloadURL, listAll, deleteObject, getStorage } from 'firebase/storage';
 import { v4 } from 'uuid';
+
 const IndieRate = () => {
 
   const [indieRate, setIndieRate] = useState([]);
@@ -47,39 +48,39 @@ const IndieRate = () => {
     };
 
     // eslint-disable-next-line
-  }, []);
+    }, []);
 
-  async function addIndieRate() {
+    async function addIndieRate() {
+      const newIndieRate = {
+        desc,
+        id: v4(),
+        createdAt: serverTimestamp(),
+        lastUpdate: serverTimestamp(),
+      };
 
-    const newIndieRate = {
-      desc,
-      id: v4(),
-      createdAt: serverTimestamp(),
-      lastUpdate: serverTimestamp(),
-    };
-
-    try {
-      const indieRateRef = doc(colletionRef, newIndieRate.id);
-      await setDoc(indieRateRef, newIndieRate);
-    } catch (error) {
-      console.error(error);
+      try {
+        const indieRateRef = doc(colletionRef, newIndieRate.id);
+        await setDoc(indieRateRef, newIndieRate);
+      } catch (error) {
+        console.error(error);
+      }
     }
-  }
 
    //DELETE FUNCTION
-   async function deleteIndieRate(indieRate) {
-    try {
-      const indieRateRef = doc(colletionRef, indieRate.id);
-      await deleteDoc(indieRateRef, indieRateRef);
-    } catch (error) {
-      console.error(error);
+    async function deleteIndieRate(indieRate) {
+      try {
+        const indieRateRef = doc(colletionRef, indieRate.id);
+        await deleteDoc(indieRateRef, indieRateRef);
+      } catch (error) {
+        console.error(error);
     }
   }
 
   const imagesListRef = ref(storage, "indieRate/");
+
   const uploadFile = () => {
     if (imageUpload == null) return;
-    const imageRef = ref(storage, `indieRate/${imageUpload.name + v4()}`);
+    const imageRef = ref(storage, `indieRate/indieCard`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImageUrls((prev) => [...prev, url]);
@@ -105,11 +106,11 @@ const IndieRate = () => {
           <p>{indieRate.desc}</p>
         </div>
       ))}
-      <div>
+      <RateCardImg>
       {imageUrls.map((url) => {
         return <img src={url} />;
       })}
-    </div>
+    </RateCardImg>
       </>
     )
   }
@@ -133,16 +134,22 @@ const IndieRate = () => {
           </div>
         </div>
       ))}
-      <div className="App">
+      <div key={indieRate.id}>
       <input
         type="file"
         onChange={(event) => {
           setImageUpload(event.target.files[0]);
         }}
       />
-      <button onClick={uploadFile}> Upload Image</button>
+      <StyledButton onClick={uploadFile}>Upload</StyledButton>
       {imageUrls.map((url) => {
-        return <img src={url} />;
+        return (
+          <>
+          <RateCardImg>
+            <img src={url} />
+          </RateCardImg>
+          </>
+        );
       })}
     </div>
     </>
@@ -180,6 +187,12 @@ const StyledButton = styled.button`
     }
   margin-top: 1em;
   width: 6rem;
+`
+
+const RateCardImg = styled.div`
+display: flex;
+justify-content: center;
+width: 100%
 `
 
 export default IndieRate;

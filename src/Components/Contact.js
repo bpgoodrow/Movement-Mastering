@@ -46,7 +46,7 @@ const Contact = () => {
           <a href="https://www.instagram.com/" target="_blank"><AiOutlineInstagram color="black" size={33} style={{ marginRight: 10 }}/></a>
           <a href="https://www.twitter.com/" target="_blank"><AiFillTwitterCircle color="black" size={33}/></a>
         </div>
-        <StyledAnchor href="mailto:movementmastering@gmail.com">movementmastering@gmail.com</StyledAnchor>
+        <StyledAnchor href="mailto:team@movementmixing.com">team@movementmixing.com</StyledAnchor>
       </ContactLinks>
     </ContactWrapper>
   );

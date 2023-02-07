@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const AlbumImage = styled.img`
   cursor: pointer;
-  
   &:hover {
     opacity: .5;
     filter: blur(1.5px);

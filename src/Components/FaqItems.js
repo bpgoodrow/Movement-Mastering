@@ -12,6 +12,7 @@ import {
 } from 'firebase/firestore';
 import { db, auth } from '../firebase';
 import styled from "styled-components";
+import ArrowToggle from "./ArrowToggle";
 
 const FaqItems = () => {
 
@@ -58,17 +59,12 @@ const FaqItems = () => {
 `
     const [rotateChevron, setRotateChevron] = useState(false);
 
-    const handleRotate = () => setRotateChevron(!rotateChevron);
-
-    const rotate = rotateChevron ? "rotate(90deg)" : "rotate(0)"
-
   return(
     <>
     {faqs.map(({header, desc}, index) => (
       <div>
         <div>
-          <FaqItem onClick={() => (handleClick(index), onToggle())}>{ toggle ? close : open }&nbsp; <h3>{header}</h3></FaqItem>
-          <IoIosArrowForward style={{ transform: rotate, transition: "all 0.2s linear" }} onClick={handleRotate} />
+          <FaqItem onClick={() => (handleClick(index))}><ArrowToggle/><h3>{header}</h3></FaqItem>
         </div>
         <p
           style={{ display: expandedIndexes[index] ? "block" : "none" }}

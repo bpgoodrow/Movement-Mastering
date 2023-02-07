@@ -5,20 +5,23 @@ import Header from "./Header";
 import RoutePath from "./RoutePath";
 import Contact from './Contact';
 import styled from "styled-components";
-
 const AppContainer = styled.div`
-display: flex;
-justify-content: center;
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
-font-family: 'DM Sans', sans-serif;
+
 `
 
 const StyledApp = styled.div`
-  width: 90%;
+  max-width: 80%;
   margin-top: 10px;
+  margin-left: 20%;
+  margin-right: 20%;
+  @media (max-width: 1800px) {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
   @media (max-width: 699px) {
     margin-left: 10px;
     margin-right: 10px;
+    max-width: 100%;
     width: 95%;
   }
 `

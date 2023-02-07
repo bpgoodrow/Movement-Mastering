@@ -69,19 +69,12 @@ const Faqs = () => {
       console.error(error);
     }
   }
-  
-  const onToggle = () => {
-    console.log(faqs);
-    toggle ? setToggle(false) : setToggle(true);
-  }
-
-  const open = <IoIosArrowForward size="30px" color="black" />
-  const close = <IoIosArrowDown size="30px" color="black" />
 
   const handleClick = (index) => {
     setExpandedIndexes((prevExpandedIndexes) => {
       const newState = [...prevExpandedIndexes];
       newState.splice(index, 1, !prevExpandedIndexes[index]);
+      // Call toggle arrow
       return newState;
     });
   };
@@ -94,18 +87,20 @@ const Faqs = () => {
           {faqs.map(({header, desc}, index) => (
             <div key={faqs.id} className="details-wrapper">
               <div>
-                <FaqItem onClick={() => (handleClick(index))}><ArrowToggle/><h3>{header}</h3></FaqItem>
+                <FaqItem  onClick={() => (handleClick(index))}><ArrowToggle/><h3>{header}</h3></FaqItem>
               </div>
               <p
                 className="text"
                 // check for each child's state to display correctly
                 style={{ transition: "all 0.1s linear", display: expandedIndexes[index] ? "block" : "none" }}
               >
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{desc}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {desc}
               </p>
               <hr/>
             </div>
           ))}
+          {/* <FaqItems/> */}
         </FaqWrapper>
       </>
     )
@@ -124,14 +119,14 @@ const Faqs = () => {
           {faqs.map(({header, desc}, index) => (
             <div key={faqs.id} className="details-wrapper">
               <div>
-                <FaqItem onClick={() => (handleClick(index), onToggle())}>{ toggle ? close : open }&nbsp;<h3>{header}</h3></FaqItem>
+                <FaqItem onClick={() => (handleClick(index))}><ArrowToggle/><h3>{header}</h3></FaqItem>
               </div>
               <p
                 className="text"
                 // check for each child's state to display correctly
-                style={{ display: expandedIndexes[index] ? "block" : "none" }}
+                style={{ transition: "all 0.1s linear", display: expandedIndexes[index] ? "block" : "none" }}
               >
-                {desc}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{desc}
               </p>
               <hr/>
             </div>
