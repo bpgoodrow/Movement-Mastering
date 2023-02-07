@@ -106,34 +106,20 @@ const IndieRate = () => {
           <p>{indieRate.desc}</p>
         </div>
       ))}
-      <RateCardImg>
+      
       {imageUrls.map((url) => {
-        return <img src={url} />;
-      })}
-    </RateCardImg>
+        return(
+      <RateCardContainer>
+         <RateCardImg src={url} />
+      </RateCardContainer>
+      )})}
+    
       </>
     )
   }
 
   return(
     <>
-      <h1>IndieRates</h1>
-      <div className="inputBox">
-        <h3>Add New</h3>
-        <h6>Description</h6>
-        <StyledTextArea value={desc} onChange={(e) => setDesc(e.target.value)} />
-        <StyledButton onClick={() => addIndieRate()}>Submit</StyledButton>
-      </div>
-      <hr />
-      {loading ? <h1>Loading...</h1> : null}
-      {indieRate.map((indieRate) => (
-        <div className="indieRate" key={indieRate.id}>
-          <p>{indieRate.desc}</p>
-          <div>
-            <StyledButton onClick={() => deleteIndieRate(indieRate)}>Delete</StyledButton>
-          </div>
-        </div>
-      ))}
       <div key={indieRate.id}>
       <input
         type="file"
@@ -145,9 +131,9 @@ const IndieRate = () => {
       {imageUrls.map((url) => {
         return (
           <>
-          <RateCardImg>
-            <img src={url} />
-          </RateCardImg>
+          <RateCardContainer>
+            <RateCardImg src={url} />
+          </RateCardContainer>
           </>
         );
       })}
@@ -189,10 +175,16 @@ const StyledButton = styled.button`
   width: 6rem;
 `
 
-const RateCardImg = styled.div`
+const RateCardContainer = styled.div`
 display: flex;
 justify-content: center;
-width: 100%
+max-width: 100%;
+height: auto;
+`
+
+const RateCardImg = styled.img`
+width: 100%;
+height: auto;
 `
 
 export default IndieRate;

@@ -9,78 +9,78 @@ import {
   collection,
   serverTimestamp,
 } from 'firebase/firestore';
-import { db, auth, storage } from './../firebase';
-import { ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage';
+import { db, auth, storage } from '../firebase';
+import { ref, uploadBytes, getDownloadURL, listAll, deleteObject, getStorage } from 'firebase/storage';
 import { v4 } from 'uuid';
-const LabelRate = () => {
 
-  const [labelRate, setLabelRate] = useState([]);
+const IndieRate = () => {
+
+  const [indieRate, setIndieRate] = useState([]);
   const [desc, setDesc] = useState('');
-  const colletionRef = collection(db, 'labelRate');
+  const colletionRef = collection(db, 'indieRate');
   const [loading, setLoading] = useState(false);
+  const [imageUpload, setImageUpload] = useState(null);
   const [imageList, setImageList] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
-  const [imageUpload, setImageUpload] = useState(null);
 
   useEffect(() => {
+    // const q = query(
+    //   colletionRef,
+      //  where('owner', '==', currentUserId),
+      // where('desc', '==', 'indieRate1') // does not need index
+      //  where('score', '<=', 100) // needs index  https://firebase.google.com/docs/firestore/query-data/indexing?authuser=1&hl=en
+      // orderBy('score', 'asc'), // be aware of limitations: https://firebase.google.com/docs/firestore/query-data/order-limit-data#limitations
+      // limit(1)
+    // );
 
     setLoading(true);
+    // const unsub = onSnapshot(q, (querySnapshot) => {
     const unsub = onSnapshot(colletionRef, (querySnapshot) => {
       const items = [];
       querySnapshot.forEach((doc) => {
         items.push(doc.data());
       });
-      setLabelRate(items);
+      setIndieRate(items);
       setLoading(false);
     });
     return () => {
       unsub();
     };
-  }, []);
 
-  async function addLabelRate() {
+    // eslint-disable-next-line
+    }, []);
 
-    const newLabelRate = {
-      desc,
-      id: v4(),
-      createdAt: serverTimestamp(),
-      lastUpdate: serverTimestamp(),
-    };
+    async function addIndieRate() {
+      const newIndieRate = {
+        desc,
+        id: v4(),
+        createdAt: serverTimestamp(),
+        lastUpdate: serverTimestamp(),
+      };
 
-    try {
-      const labelRateRef = doc(colletionRef, newLabelRate.id);
-      await setDoc(labelRateRef, newLabelRate);
-    } catch (error) {
-      console.error(error);
+      try {
+        const indieRateRef = doc(colletionRef, newIndieRate.id);
+        await setDoc(indieRateRef, newIndieRate);
+      } catch (error) {
+        console.error(error);
+      }
     }
-  }
 
-   async function deleteLabelRate(labelRate) {
-    try {
-      const labelRateRef = doc(colletionRef, labelRate.id);
-      await deleteDoc(labelRateRef, labelRateRef);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async function editLabelRate(labelRate) {
-    const updatedlabelRate = {
-      lastUpdate: serverTimestamp(),
-    };
-
-    try {
-      const labelRateRef = doc(colletionRef, labelRate.id);
-      updateDoc(labelRateRef, updatedlabelRate);
-    } catch (error) {
-      console.error(error);
+   //DELETE FUNCTION
+    async function deleteIndieRate(indieRate) {
+      try {
+        const indieRateRef = doc(colletionRef, indieRate.id);
+        await deleteDoc(indieRateRef, indieRateRef);
+      } catch (error) {
+        console.error(error);
     }
   }
 
   const imagesListRef = ref(storage, "labelRate/");
+
   const uploadFile = () => {
     if (imageUpload == null) return;
-    const imageRef = ref(storage, `labelindieRate/${imageUpload.name + v4()}`);
+    const imageRef = ref(storage, `labelRate/labelCard`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImageUrls((prev) => [...prev, url]);
@@ -98,55 +98,43 @@ const LabelRate = () => {
     });
   }, []);
 
-  if (auth.currentUser == null){
+  if (auth.currentUser == null) {
     return (
       <>
-      {loading ? <h1>Loading...</h1> : null}
-        {labelRate.map((labelRate) => (
-          <div>
-            <p>{labelRate.desc}</p>
-          </div>
-        ))}
-        {imageUrls.map((url) => {
-        return <img src={url} />;
-      })}
+      
+      {imageUrls.map((url) => {
+        return(
+      <RateCardContainer>
+         <RateCardImg src={url} />
+      </RateCardContainer>
+      )})}
+    
       </>
     )
   }
-  if(auth.currentUser != null){
 
- 
   return(
-      <>
-        <h1>LabelRates</h1>
-        <div>
-          <h3>Add New</h3>
-          <StyledTextArea value={desc} onChange={(e) => setDesc(e.target.value)} />
-          <StyledButton onClick={() => addLabelRate()}>Submit</StyledButton>
-        </div>
-        <hr />
-        {loading ? <h1>Loading...</h1> : null}
-        {labelRate.map((labelRate) => (
-          <div className="labelRate" key={labelRate.id}>
-            <p>{labelRate.desc}</p>
-            <div>
-              <StyledButton onClick={() => deleteLabelRate(labelRate)}>Delete</StyledButton>
-            </div>
-          </div>
-        ))}
-        <input
+    <>
+      <div key={indieRate.id}>
+      <input
         type="file"
         onChange={(event) => {
           setImageUpload(event.target.files[0]);
         }}
       />
-        <button onClick={uploadFile}> Upload Image</button>
-        {imageUrls.map((url) => {
-        return <img src={url} />;
+      <StyledButton onClick={uploadFile}>Upload</StyledButton>
+      {imageUrls.map((url) => {
+        return (
+          <>
+          <RateCardContainer>
+            <RateCardImg src={url} />
+          </RateCardContainer>
+          </>
+        );
       })}
-      </>
-    )
-  }
+    </div>
+    </>
+  )
 }
 
 const StyledTextArea = styled.textarea`
@@ -182,4 +170,16 @@ const StyledButton = styled.button`
   width: 6rem;
 `
 
-export default LabelRate;
+const RateCardContainer = styled.div`
+display: flex;
+justify-content: center;
+max-width: 100%;
+height: auto;
+`
+
+const RateCardImg = styled.img`
+width: 100%;
+height: auto;
+`
+
+export default IndieRate;

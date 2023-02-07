@@ -62,18 +62,30 @@ const StyledButton = styled.button`
   width: 6rem;
 `
 
+const ArtistName = styled.div`
+  
+`
+
 const PortfolioDetail = (props) => {
   const { portfolioItem, onClickingDelete } = props;
 
   if (auth.currentUser == null) {
     let visibleButtons = !null;
-    console.log(auth.currentUser, "auth", visibleButtons)
+    console.log(auth.currentUser, "auth", visibleButtons);
+    console.log(portfolioItem)
+    if (portfolioItem.artistName ==  undefined) {
+      let AlbumImage = null;
+    }
     return (
       <>
         <DetailContainer>
           <AlbumImage src={portfolioItem.albumCover} />
           <InfoContainer>
-            <div>{portfolioItem.artistName} | {portfolioItem.albumName}</div>
+            <ArtistName>
+            {portfolioItem.artistName}
+            |
+            {portfolioItem.albumName}
+            </ArtistName>
             <div>Song {portfolioItem.songName}</div>
             <div>Mastered By {portfolioItem.masteredBy}</div>
             <div>Produced By {portfolioItem.producedBy}</div>
@@ -112,8 +124,7 @@ const PortfolioDetail = (props) => {
             </div>
             <StyledButton onClick={props.onClickingEdit }>Update Item</StyledButton>
             <StyledButton onClick={()=> onClickingDelete(portfolioItem.id)}>Delete</StyledButton>
-            {visibleButtons ? null : <StyledButton onClick={props.onClickingHome }>Home</StyledButton>}
-            {/* {error ? null : <button onClick={handleClick}>{buttonText}</button>} */}
+            <StyledButton onClick={props.onClickingHome }>Back</StyledButton>
           </InfoContainer>
         </DetailContainer>
       </>

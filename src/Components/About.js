@@ -51,6 +51,11 @@ const StyledButton = styled.button`
   width: 6rem;
 `
 
+const AboutContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
 const About = () => {
 
   const [about, setAbout] = useState([]);
@@ -142,8 +147,10 @@ const About = () => {
       <AboutWrapper>
         <div>
           <h3>Update About</h3>
-          <StyledTextArea value={desc} placeholder={about.map((about) => (about.desc))} onChange={(e) => setDesc(e.target.value)} />
-          <StyledButton onClick={() => addAbout()}>Submit</StyledButton>
+          <AboutContainer>
+            <StyledTextArea value={desc} placeholder={about.map((about) => (about.desc))} onChange={(e) => setDesc(e.target.value)} />
+            <StyledButton onClick={() => addAbout()}>Submit</StyledButton>
+          </AboutContainer>
         </div>
         {loading ? <h1>Loading...</h1> : null}
         {about.map((about) => (

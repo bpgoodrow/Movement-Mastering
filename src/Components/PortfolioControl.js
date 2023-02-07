@@ -153,7 +153,6 @@ const PortfolioControl = () => {
   } else if (auth.currentUser !== null) {
 
     let currentlyVisibleState = null;
-    let buttonText = "Add New";
 
     if (error) {
       currentlyVisibleState = <p>There was an error: {error}</p>
@@ -161,17 +160,15 @@ const PortfolioControl = () => {
       currentlyVisibleState = <EditPortfolioItemForm portfolioItem={selectedPortfolioItem}
       onEditPortfolioItem = {handleEditingPortfolioItemInPortfolioDisplay}
       />
-      buttonText = "Return to Portfolio Display";
     } else if (selectedPortfolioItem != null) {
       currentlyVisibleState = <PortfolioDetail 
       portfolioItem={selectedPortfolioItem}
       onClickingEdit= {handleEditClick}
       onClickingDelete = {handleDeletingPortfolioItem}
+      onClickingHome={handleHomeClick}
       />
-      buttonText = "Return to Portfolio Display"
     } else if (formVisibleOnPage) {
       currentlyVisibleState = <NewPortfolioForm onNewPortfolioItemCreation={handleAddingNewPortfolioItemToPortfolioDisplay}/>;
-      buttonText = "Return to Portfolio Display"
     } else {
       currentlyVisibleState = 
       <>
@@ -186,8 +183,6 @@ const PortfolioControl = () => {
     return(
       <div>
         {currentlyVisibleState}
-        
-        {error ? null : <StyledButton onClick={handleClick}>{buttonText}</StyledButton>}
         
       </div>
     )
