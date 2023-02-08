@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import { auth } from './../firebase';
 import styled from "styled-components";
@@ -62,39 +62,80 @@ const StyledButton = styled.button`
   width: 6rem;
 `
 
-const ArtistName = styled.div`
-  
+const ContainerItem = styled.div`
+  display: flex;
 `
 
 const PortfolioDetail = (props) => {
   const { portfolioItem, onClickingDelete } = props;
+  const [song, setSong] = useState(["song", null])
+  const [masteredBy, setMasteredBy] = useState(["Mastered By"], null)
+  const [producedBy, setProducedBy] = useState(["Produced By", null])
+  const [mixedBy, setMixedBy] = useState(["Mixed By", null])
+  const [spotify, setSpotify] = useState([<FaSpotify color="black" size={35}/>, null])
+
 
   if (auth.currentUser == null) {
     let visibleButtons = !null;
     console.log(auth.currentUser, "auth", visibleButtons);
     console.log(portfolioItem)
-    if (portfolioItem.artistName ==  undefined) {
-      let AlbumImage = null;
-    }
     return (
       <>
         <DetailContainer>
           <AlbumImage src={portfolioItem.albumCover} />
           <InfoContainer>
-            <ArtistName>
             {portfolioItem.artistName}
             |
             {portfolioItem.albumName}
-            </ArtistName>
-            <div>Song {portfolioItem.songName}</div>
-            <div>Mastered By {portfolioItem.masteredBy}</div>
-            <div>Produced By {portfolioItem.producedBy}</div>
-            <div>Mixed By {portfolioItem.mixedBy}</div>
-            <div>
-              <LinkIcon href={portfolioItem.spotify} target="_blank"><FaSpotify color="black" size={35}/></LinkIcon>
+            <ContainerItem>
+              <div>
+                {
+                  portfolioItem.songName == undefined
+                  ? <div>{null}</div>
+                  : <div>{song}</div>
+                }
+              </div>
+              &nbsp;
+              {portfolioItem.songName}
+            </ContainerItem>
+            <ContainerItem>
+              {
+                portfolioItem.masteredBy == undefined
+                ? <div>{null}</div>
+                : <div>{masteredBy}</div>
+              }
+              &nbsp;
+              {portfolioItem.masteredBy}
+            </ContainerItem>
+            <ContainerItem>
+              {
+                portfolioItem.mixedBy == undefined
+                ? <div>{null}</div>
+                : <div>{mixedBy}</div>
+              }
+              &nbsp;
+              {portfolioItem.mixedBy}
+            </ContainerItem>
+            <ContainerItem>
+              {
+                portfolioItem.producedBy == undefined
+                ? <div>{null}</div>
+                : <div>{producedBy}</div>
+              }
+              &nbsp;
+              {portfolioItem.producedBy}
+            </ContainerItem>
+
+              <LinkIcon href={portfolioItem.spotify} target="_blank">
+                {
+                  portfolioItem.spotify == undefined
+                  ? <div>{null}</div>
+                  : <div>{spotify}</div>
+                }
+              </LinkIcon>
               <LinkIcon href={portfolioItem.appleMusic} target="_blank"><FaApple color="black" size={39}/></LinkIcon>
               <LinkIcon href={portfolioItem.appleMusic} target="_blank"><SiTidal color="black" size={35}/></LinkIcon>
-            </div>
+
             {visibleButtons ? null : <button onClick={props.onClickingEdit }>Update Item</button>}
             {visibleButtons ? null : <button onClick={()=> onClickingDelete(portfolioItem.id)}>Delete</button>}
             

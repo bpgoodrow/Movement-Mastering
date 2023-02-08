@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, forwardRef, useRef, useImperativeHandle} from "react";
 import FaqItems from "./FaqItems";
 import ArrowToggle from "./ArrowToggle";
 import {
@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
 import styled, { keyframes } from "styled-components";
 import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 
-const Faqs = () => {
+const Faqs = ({onClick}) => {
 
   const [faqs, setFaqs] = useState([]);
   const [desc, setDesc] = useState();
@@ -87,7 +87,7 @@ const Faqs = () => {
           {faqs.map(({header, desc}, index) => (
             <div key={faqs.id} className="details-wrapper">
               <div>
-                <FaqItem  onClick={() => (handleClick(index))}><ArrowToggle/><h3>{header}</h3></FaqItem>
+                <FaqItem  onClick={() => (handleClick(index), {onClick})}><ArrowToggle /><h3>{header}</h3></FaqItem>
               </div>
               <p
                 className="text"
@@ -122,8 +122,6 @@ const Faqs = () => {
                 <FaqItem onClick={() => (handleClick(index))}><ArrowToggle/><h3>{header}</h3></FaqItem>
               </div>
               <p
-                className="text"
-                // check for each child's state to display correctly
                 style={{ transition: "all 0.1s linear", display: expandedIndexes[index] ? "block" : "none" }}
               >
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{desc}
