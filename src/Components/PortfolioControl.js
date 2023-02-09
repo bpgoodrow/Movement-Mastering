@@ -17,7 +17,7 @@ const PortfolioControl = () => {
   const [selectedPortfolioItem, setSelectedPortfolioItem] = useState(null);
   const [editing, setEditing] = useState(false);
   const [error, setError] = useState();
-
+  const [loading, setLoading] = useState(false);
   const [imageUpload, setImageUpload] = useState(null);
   const [imageList, setImageList] = useState([]);
 
@@ -46,7 +46,9 @@ const PortfolioControl = () => {
   //   });
   // }, []);
 
+
   useEffect(() => {
+    setLoading(true)
     const unSubscribe = onSnapshot(
       collection(db, "mastersPortfolio"),
       (querySnapshot) => {
@@ -61,11 +63,13 @@ const PortfolioControl = () => {
             mixedBy: doc.data().mixedBy,
             spotify: doc.data().spotify,
             appleMusic: doc.data().appleMusic,
+            tidal: doc.data().tidal,
             albumCover: doc.data().albumCover,
             id: doc.id,
           });
         });
         setPortfolioDisplay(mastersPortfolio);
+        setLoading(false);
       },
       (error) => {
       setError(error.message);
@@ -138,6 +142,7 @@ const PortfolioControl = () => {
       currentlyVisibleState =
       <>
         <About />
+        {loading ? <h1>Loading...</h1> : null}
         <PortfolioDisplay onPortfolioItemSelection=
         {handleChangingSelectedPortfolioItem} portfolioDisplay={portfolioDisplay}
         />

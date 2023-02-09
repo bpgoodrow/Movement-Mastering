@@ -42,6 +42,7 @@ const PortfolioDisplay = (props) => {
           mixedBy={ portfolioItem.mixedBy }
           spotify= { portfolioItem.spotify }
           appleMusic= { portfolioItem.appleMusic}
+          tidal = {portfolioItem.tidal}
           id= { portfolioItem.id }
           key= { portfolioItem.id }
           />

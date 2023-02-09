@@ -133,7 +133,6 @@ const About = () => {
   if (auth.currentUser == null) {
     return (
       <AboutWrapper>
-      <h1>Movement Mastering</h1>
       {loading ? <h1>Loading...</h1> : null}
       {about.map((about) => (
         <div key={about.id}>

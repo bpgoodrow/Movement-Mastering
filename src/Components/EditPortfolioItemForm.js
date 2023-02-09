@@ -16,6 +16,7 @@ const EditPortfolioItemForm = (props) => {
       mixedBy: e.target.mixedBy.value,
       spotify: e.target.spotify.value,
       appleMusic: e.target.appleMusic.value,
+      tidal: e.target.tidal.value,
       id: portfolioItem.id,
     });
   }

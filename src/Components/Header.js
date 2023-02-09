@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { CgMenu, CgClose } from 'react-icons/cg';
+import { TfiClose, TfiMenu } from 'react-icons/tfi'
+import { RxHamburgerMenu } from 'react-icons/rx'
 
   const HeaderContainer = styled.div`
     display: flex;
@@ -115,8 +117,8 @@ const Header = ({ handleScroll }) => {
   const [faqActive, setFaqActive] = useState(false);
   const [contactActive, setContactActive] = useState(false);
 
-  const open = <HamburgerIcons><CgMenu size="40px" color="black" /></HamburgerIcons>
-  const close = <HamburgerIcons><CgClose size="40px" color="black" /></HamburgerIcons>
+  const open = <HamburgerIcons><RxHamburgerMenu size="30px" color="black" fontWeight= '100'/></HamburgerIcons>
+  const close = <HamburgerIcons><TfiClose size="25px" color="black" /></HamburgerIcons>
 
   const refreshPage = () => {
     window.location.reload(false);
@@ -143,7 +145,7 @@ const Header = ({ handleScroll }) => {
   return (
       <HeaderContainer>
         <div onClick={refreshPage}>
-          <MovementMasteringLogo src="./movement_mixing_logo1.png" alt="Movement Mastering Logo" />
+          <MovementMasteringLogo src="./MVMT Color Final.png" alt="Movement Mastering Logo" />
         </div>
         <HeaderTitleAndLinksContainer>
           <HeaderLinkContainer>

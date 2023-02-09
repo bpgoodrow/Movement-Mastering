@@ -47,6 +47,11 @@ const ReusableForm = (props) => {
           name="appleMusic"
           placeholder="apple music"
         />
+        <StyledInput
+          type="text"
+          name="tidal"
+          placeholder="tidal"
+        />
         <StyledButton type="submit">Submit</StyledButton>
       </StyledForm>
     </div>

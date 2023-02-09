@@ -87,7 +87,7 @@ const Faqs = ({onClick}) => {
           {faqs.map(({header, desc}, index) => (
             <div key={faqs.id} className="details-wrapper">
               <div>
-                <FaqItem  onClick={() => (handleClick(index), {onClick})}><ArrowToggle /><h3>{header}</h3></FaqItem>
+                <FaqItem  onClick={() => (handleClick(index))}><ArrowToggle/><h3>{header}</h3></FaqItem>
               </div>
               <p
                 className="text"
@@ -121,9 +121,7 @@ const Faqs = ({onClick}) => {
               <div>
                 <FaqItem onClick={() => (handleClick(index))}><ArrowToggle/><h3>{header}</h3></FaqItem>
               </div>
-              <p
-                style={{ transition: "all 0.1s linear", display: expandedIndexes[index] ? "block" : "none" }}
-              >
+              <p style={{ transition: "all 5s linear", display: expandedIndexes[index] ? "block" : "none" }}>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{desc}
               </p>
               <hr/>

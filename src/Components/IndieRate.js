@@ -142,21 +142,6 @@ const IndieRate = () => {
   )
 }
 
-const StyledTextArea = styled.textarea`
-  border: solid light-gray 2px;
-  &:focus {
-    outline: none;
-    border: 2px solid black;
-  }
-  height: 2.5rem;
-  padding: .5rem;
-  outline: none;
-  width: 50vw;
-  @media (max-width: 700px) {
-    width: 80vw;
-  }
-`
-
 const StyledButton = styled.button`
   border: solid black 1px;
   background-color: black;
@@ -178,13 +163,14 @@ const StyledButton = styled.button`
 const RateCardContainer = styled.div`
 display: flex;
 justify-content: center;
-max-width: 100%;
-height: auto;
 `
 
 const RateCardImg = styled.img`
 width: 100%;
 height: auto;
+@media (min-width: 699px) {
+  width: 80%;
+}
 `
 
 export default IndieRate;

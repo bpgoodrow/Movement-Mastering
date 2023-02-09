@@ -63,6 +63,7 @@ PortfolioItem.propsTypes = {
   mixedBy: PropTypes.string.isRequired,
   spotify: PropTypes.string.isRequired,
   appleMusic: PropTypes.string.isRequired,
+  tidal: PropTypes.string.isRequired,
   id: PropTypes.string,
   whenPortfolioItemClicked: PropTypes.func
 }

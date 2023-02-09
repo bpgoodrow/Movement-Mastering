@@ -173,13 +173,14 @@ const StyledButton = styled.button`
 const RateCardContainer = styled.div`
 display: flex;
 justify-content: center;
-max-width: 100%;
-height: auto;
 `
 
 const RateCardImg = styled.img`
 width: 100%;
 height: auto;
+@media (min-width: 699px) {
+  width: 80%;
+}
 `
 
 export default IndieRate;
