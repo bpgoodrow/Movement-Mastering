@@ -107,14 +107,13 @@ const Faqs = ({onClick}) => {
   } else {
       return(
         <FaqWrapper>
-          <div>
-            <h3>Add New FAQ</h3>
+          <FaqInputWrapper>
             <h6>FAQ</h6>
             <StyledTextArea value={header} onChange={(e) => setHeader(e.target.value)} />
             <h6>Answer</h6>
             <StyledTextArea value={desc} onChange={(e) => setDesc(e.target.value)} />
             <StyledButton onClick={() => addFaqs()}>Submit</StyledButton>
-          </div>
+          </FaqInputWrapper>
           {loading ? <h1>Loading...</h1> : null}
           {faqs.map(({header, desc}, index) => (
             <div key={faqs.id} className="details-wrapper">
@@ -173,6 +172,11 @@ const FaqItem = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+`
+
+const FaqInputWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
 `
 
 export default Faqs;
