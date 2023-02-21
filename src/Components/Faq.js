@@ -86,18 +86,19 @@ const Faqs = ({onClick}) => {
           {loading ? <h1>Loading...</h1> : null}
           {faqs.map(({header, desc}, index) => (
             <div key={faqs.id} className="details-wrapper">
-              <div>
-                <FaqItem  onClick={() => (handleClick(index))}><ArrowToggle/><h3>{header}</h3></FaqItem>
-              </div>
+              <FaqItem1>
+                {/* <FaqItem  onClick={() => (handleClick(index))}></FaqItem> */}
+                <h3>{header}</h3>
+                {desc}
+              </FaqItem1>
               <p
                 className="text"
                 // check for each child's state to display correctly
                 style={{ transition: "all 0.1s linear", display: expandedIndexes[index] ? "block" : "none" }}
               >
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {desc}
+                
               </p>
-              <hr/>
             </div>
           ))}
           {/* <FaqItems/> */}
@@ -116,14 +117,13 @@ const Faqs = ({onClick}) => {
           </FaqInputWrapper>
           {loading ? <h1>Loading...</h1> : null}
           {faqs.map(({header, desc}, index) => (
-            <div key={faqs.id} className="details-wrapper">
+            <div key={faqs.id}>
               <div>
-                <FaqItem onClick={() => (handleClick(index))}><ArrowToggle/><h3>{header}</h3></FaqItem>
+                <FaqItem onClick={() => (handleClick(index))}><h3>{header}</h3></FaqItem>
               </div>
               <p style={{ transition: "all 5s linear", display: expandedIndexes[index] ? "block" : "none" }}>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{desc}
               </p>
-              <hr/>
+              {desc}
             </div>
           ))}
         </FaqWrapper>
@@ -147,25 +147,23 @@ const StyledTextArea = styled.textarea`
 `
 
 const StyledButton = styled.button`
-  border: solid black 1px;
-  background-color: black;
-  color: white;
-  cursor: pointer;
-  height: 2rem;
-    &:hover {
-      background-color: #282828;
-      border: 3px solid #282828;
-    }
-    &:active {
-      background-color: #484848;
-      border: 3px solid #484848;
-    }
-  margin-top: 1em;
-  width: 6rem;
+border: solid white 1px;
+background-color: black;
+color: white;
+cursor: pointer;
+height: 2rem;
+  &:hover {
+    border: 2px solid white;
+  }
+  &:active {
+    border: 3px solid white;
+  }
+margin-top: 1em;
+width: 6rem;
 `
 
 const FaqWrapper = styled.div`
- 
+  font-size: 1.5em;
 `
 
 const FaqItem = styled.div`
@@ -174,9 +172,15 @@ const FaqItem = styled.div`
   cursor: pointer;
 `
 
+const FaqItem1 = styled.div`
+  border-bottom: solid gray .5px;
+  display: flex;
+  flex-direction: column;
+`
+
 const FaqInputWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 `
 
 export default Faqs;

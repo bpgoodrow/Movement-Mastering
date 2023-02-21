@@ -14,9 +14,9 @@ import { RxHamburgerMenu } from 'react-icons/rx'
   const HomeLink = styled(NavLink)`
     text-decoration: none;
     cursor: pointer;
-    border-bottom: ${(props) => (props.homeActive ? 'solid black .5px' : 'none')};
+    border-bottom: ${(props) => (props.homeActive ? 'solid white .5px' : 'none')};
     &:hover {
-      border-bottom: solid black .5px;
+      border-bottom: solid white .5px;
     }
     @media (max-width: 405px) {
       margin: .55rem;
@@ -28,9 +28,9 @@ import { RxHamburgerMenu } from 'react-icons/rx'
     margin-left: 1rem;
     cursor: pointer;
     border-bottom: 
-      ${(props) => (props.faqActive ? 'solid black .5px' : 'none')};
+      ${(props) => (props.faqActive ? 'solid white .5px' : 'none')};
     &:hover {
-      border-bottom: solid black .5px;
+      border-bottom: solid white .5px;
     }
     @media (max-width: 405px) {
       margin: .55rem;
@@ -42,9 +42,9 @@ import { RxHamburgerMenu } from 'react-icons/rx'
     cursor: pointer;
     margin-left: 1rem;
     border-bottom: 
-      ${(props) => (props.contactActive ? 'solid black .5px' : 'none')};
+      ${(props) => (props.contactActive ? 'solid white .5px' : 'none')};
     &:hover {
-      border-bottom: solid black .5px;
+      border-bottom: solid white .5px;
     }
     @media (max-width: 405px) {
       margin: .55rem;
@@ -71,7 +71,7 @@ import { RxHamburgerMenu } from 'react-icons/rx'
   const StyledLink = styled(NavLink)`
     align-items: center;
     font-size: 1.2rem;
-    color: black;
+    color: white;
     display: flex;
     justify-content: center;
     text-decoration: none;
@@ -117,8 +117,8 @@ const Header = ({ handleScroll }) => {
   const [faqActive, setFaqActive] = useState(false);
   const [contactActive, setContactActive] = useState(false);
 
-  const open = <HamburgerIcons><RxHamburgerMenu size="30px" color="black" fontWeight= '100'/></HamburgerIcons>
-  const close = <HamburgerIcons><TfiClose size="25px" color="black" /></HamburgerIcons>
+  const open = <HamburgerIcons><RxHamburgerMenu size="30px" color="white" fontWeight= '100'/></HamburgerIcons>
+  const close = <HamburgerIcons><TfiClose size="25px" color="white" /></HamburgerIcons>
 
   const refreshPage = () => {
     window.location.reload(false);
@@ -145,7 +145,7 @@ const Header = ({ handleScroll }) => {
   return (
       <HeaderContainer>
         <div onClick={refreshPage}>
-          <MovementMasteringLogo src="./MVMT Color Final.png" alt="Movement Mastering Logo" />
+          <MovementMasteringLogo src="./MVMT Color REV.png" alt="Movement Mastering Logo" />
         </div>
         <HeaderTitleAndLinksContainer>
           <HeaderLinkContainer>

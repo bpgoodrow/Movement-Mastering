@@ -143,24 +143,23 @@ const IndieRate = () => {
 }
 
 const StyledButton = styled.button`
-  border: solid black 1px;
+  border: solid white 1px;
   background-color: black;
   color: white;
   cursor: pointer;
   height: 2rem;
     &:hover {
-      background-color: #282828;
-      border: 3px solid #282828;
+      border: 2px solid white;
     }
     &:active {
-      background-color: #484848;
-      border: 3px solid #484848;
+      border: 3px solid white;
     }
   margin-top: 1em;
   width: 6rem;
 `
 
 const RateCardContainer = styled.div`
+margin-top: 20px;
 display: flex;
 justify-content: center;
 `

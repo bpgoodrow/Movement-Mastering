@@ -34,21 +34,19 @@ const StyledTextArea = styled.textarea`
 `
 
 const StyledButton = styled.button`
-  border: solid black 1px;
-  background-color: black;
-  color: white;
-  cursor: pointer;
-  height: 2rem;
-    &:hover {
-      background-color: #282828;
-      border: 3px solid #282828;
-    }
-    &:active {
-      background-color: #484848;
-      border: 3px solid #484848;
-    }
-  margin-top: 1em;
-  width: 6rem;
+border: solid white 1px;
+background-color: black;
+color: white;
+cursor: pointer;
+height: 2rem;
+  &:hover {
+    border: 2px solid white;
+  }
+  &:active {
+    border: 3px solid white;
+  }
+margin-top: 1em;
+width: 6rem;
 `
 
 const AboutContainer = styled.div`
@@ -133,7 +131,7 @@ const About = () => {
   if (auth.currentUser == null) {
     return (
       <AboutWrapper>
-      {loading ? <h1>Loading...</h1> : null}
+      {/* {loading ? <h1>Loading...</h1> : null} */}
       {about.map((about) => (
         <div key={about.id}>
           <p>{about.desc}</p>
@@ -151,7 +149,7 @@ const About = () => {
             <StyledButton onClick={() => addAbout()}>Submit</StyledButton>
           </AboutContainer>
         </div>
-        {loading ? <h1>Loading...</h1> : null}
+        {/* {loading ? <h1>Loading...</h1> : null} */}
         {about.map((about) => (
           <div key={about.id}>
             {about.desc}

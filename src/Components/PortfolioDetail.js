@@ -31,6 +31,7 @@ const InfoContainer = styled.div`
   }
   @media (max-width: 699px) {
     font-size: 1.5em;
+    margin-top: 15px;
   }
 `
 
@@ -40,23 +41,21 @@ const InfoItem = styled.div`
 
 const LinkIcon = styled.a`
   cursor: pointer;
-  width: 12%;
   margin-right: 20px;
+  }
 `
 
 const StyledButton = styled.button`
-  border: solid black 1px;
+  border: solid white 1px;
   background-color: black;
   color: white;
   cursor: pointer;
   height: 2rem;
     &:hover {
-      background-color: #282828;
-      border: 3px solid #282828;
+      border: 2px solid white;
     }
     &:active {
-      background-color: #484848;
-      border: 3px solid #484848;
+      border: 3px solid white;
     }
   margin-top: 1em;
   width: 6rem;
@@ -65,17 +64,19 @@ const StyledButton = styled.button`
 const ContainerItem = styled.div`
   display: flex;
   margin-bottom: 5px;
+  align-items: center;
 `
 
 const PortfolioDetail = (props) => {
   const { portfolioItem, onClickingDelete } = props;
-  const [song, setSong] = useState(["song", null])
+  const [artist, setArtist] = useState(["Artist", null])
+  const [song, setSong] = useState(["Song", null])
   const [masteredBy, setMasteredBy] = useState(["Mastered By"], null)
   const [producedBy, setProducedBy] = useState(["Produced By", null])
   const [mixedBy, setMixedBy] = useState(["Mixed By", null])
-  const [spotify, setSpotify] = useState([<FaSpotify color="black" size={35}/>, null])
-  const [appleMusic, setAppleMusic] = useState([<FaApple color="black" size={35}/>, null])
-  const [tidal, setTidal] = useState([<SiTidal color = "black" size={35}/>, null])
+  const [spotify, setSpotify] = useState([<FaSpotify color="white" size={35}/>, null])
+  const [appleMusic, setAppleMusic] = useState([<FaApple color="white" size={37}/>, null])
+  const [tidal, setTidal] = useState([<SiTidal color = "white" size={43}/>, null])
 
 
   if (auth.currentUser == null) {
@@ -87,30 +88,39 @@ const PortfolioDetail = (props) => {
         <DetailContainer>
           <AlbumImage src={portfolioItem.albumCover} />
           <InfoContainer>
-            <ContainerItem>
+            {/* <ContainerItem>
               {portfolioItem.artistName}
               &nbsp;
               |
               &nbsp;
               {portfolioItem.albumName}
-            </ContainerItem>
+            </ContainerItem> */}
             <ContainerItem>
-                {
+                {/* {
                   portfolioItem.songName == undefined
                   ? <div>{null}</div>
-                  : <div>{song}</div>
+                  : <div>{}</div>
                 }
-              &nbsp;
+              &nbsp; */}
               {portfolioItem.songName}
             </ContainerItem>
             <ContainerItem>
+                {
+                  portfolioItem.artistName == undefined
+                  ? <div>{null}</div>
+                  : <div>{artist}</div>
+                }
+              &nbsp;
+              {portfolioItem.artistName}
+            </ContainerItem>
+            <ContainerItem>
               {
-                portfolioItem.masteredBy == undefined
+                portfolioItem.producedBy == undefined
                 ? <div>{null}</div>
-                : <div>{masteredBy}</div>
+                : <div>{producedBy}</div>
               }
               &nbsp;
-              {portfolioItem.masteredBy}
+              {portfolioItem.producedBy}
             </ContainerItem>
             <ContainerItem>
               {
@@ -123,12 +133,12 @@ const PortfolioDetail = (props) => {
             </ContainerItem>
             <ContainerItem>
               {
-                portfolioItem.producedBy == undefined
+                portfolioItem.masteredBy == undefined
                 ? <div>{null}</div>
-                : <div>{producedBy}</div>
+                : <div>{masteredBy}</div>
               }
               &nbsp;
-              {portfolioItem.producedBy}
+              {portfolioItem.masteredBy}
             </ContainerItem>
             <ContainerItem>
               <LinkIcon href={portfolioItem.spotify} target="_blank">
@@ -176,9 +186,9 @@ const PortfolioDetail = (props) => {
             <InfoItem>Produced By {portfolioItem.producedBy}</InfoItem>
             <InfoItem>Mixed By {portfolioItem.mixedBy}</InfoItem>
             <div>
-              <LinkIcon href={portfolioItem.spotify} target="_blank"><FaSpotify color="black" size={35}/></LinkIcon>
-              <LinkIcon href={portfolioItem.appleMusic} target="_blank"><FaApple color="black" size={39}/></LinkIcon>
-              <LinkIcon href={portfolioItem.tidal} target="_blank"><SiTidal color="black" size={35}/></LinkIcon>
+              <LinkIcon href={portfolioItem.spotify} target="_blank"><FaSpotify color="white" size={35}/></LinkIcon>
+              <LinkIcon href={portfolioItem.appleMusic} target="_blank"><FaApple color="white" size={39}/></LinkIcon>
+              <LinkIcon href={portfolioItem.tidal} target="_blank"><SiTidal color="white" size={35}/></LinkIcon>
             </div>
             <StyledButton onClick={props.onClickingEdit }>Update Item</StyledButton>
             <StyledButton onClick={()=> onClickingDelete(portfolioItem.id)}>Delete</StyledButton>
