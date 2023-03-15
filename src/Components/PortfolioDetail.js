@@ -190,7 +190,7 @@ const PortfolioDetail = (props) => {
               <LinkIcon href={portfolioItem.appleMusic} target="_blank"><FaApple color="white" size={39}/></LinkIcon>
               <LinkIcon href={portfolioItem.tidal} target="_blank"><SiTidal color="white" size={35}/></LinkIcon>
             </div>
-            <StyledButton onClick={props.onClickingEdit }>Update Item</StyledButton>
+            <StyledButton onClick={props.onClickingEdit }>Update</StyledButton>
             <StyledButton onClick={()=> onClickingDelete(portfolioItem.id)}>Delete</StyledButton>
             <StyledButton onClick={props.onClickingHome }>Back</StyledButton>
           </InfoContainer>

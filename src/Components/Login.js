@@ -60,19 +60,19 @@ const StyledForm = styled.form`
 `
 
 const StyledButton = styled.button`
-  border: solid white 1px;
-  background-color: black;
-  color: white;
-  cursor: pointer;
-  height: 2rem;
-    &:hover {
-      background-color: #282828;
-    }
-    &:active {
-      background-color: #484848;
-    }
-  margin-top: 1em;
-  width: 6rem;
+border: solid white 1px;
+background-color: black;
+color: white;
+cursor: pointer;
+height: 2rem;
+  &:hover {
+    border: 2px solid white;
+  }
+  &:active {
+    border: 3px solid white;
+  }
+margin-top: 1em;
+width: 6rem;
 `
 
 const StyledInput = styled.input`

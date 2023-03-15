@@ -117,13 +117,20 @@ const Faqs = ({onClick}) => {
           </FaqInputWrapper>
           {loading ? <h1>Loading...</h1> : null}
           {faqs.map(({header, desc}, index) => (
-            <div key={faqs.id}>
-              <div>
-                <FaqItem onClick={() => (handleClick(index))}><h3>{header}</h3></FaqItem>
-              </div>
-              <p style={{ transition: "all 5s linear", display: expandedIndexes[index] ? "block" : "none" }}>
+            <div key={faqs.id} className="details-wrapper">
+              <FaqItem1>
+                {/* <FaqItem  onClick={() => (handleClick(index))}></FaqItem> */}
+                <h3>{header}</h3>
+                {desc}
+              </FaqItem1>
+              <p
+                className="text"
+                // check for each child's state to display correctly
+                style={{ transition: "all 0.1s linear", display: expandedIndexes[index] ? "block" : "none" }}
+              >
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                
               </p>
-              {desc}
             </div>
           ))}
         </FaqWrapper>
@@ -173,7 +180,8 @@ const FaqItem = styled.div`
 `
 
 const FaqItem1 = styled.div`
-  border-bottom: solid gray .5px;
+  border-top: solid gray .5px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
 `

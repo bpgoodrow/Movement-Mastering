@@ -145,7 +145,7 @@ const Header = ({ handleScroll }) => {
   return (
       <HeaderContainer>
         <div onClick={refreshPage}>
-          <MovementMasteringLogo src="./MVMT Color REV.png" alt="Movement Mastering Logo" />
+          <MovementMasteringLogo src="./MVMT Dark Color.png" alt="Movement Mastering Logo" />
         </div>
         <HeaderTitleAndLinksContainer>
           <HeaderLinkContainer>
